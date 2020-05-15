@@ -20,7 +20,7 @@ class Categories
     private $id;
 
     /**
-     * @ORM\OneToMany(targetEntity=Jeux::class, mappedBy="categorie")
+     * @ORM\OneToMany(targetEntity=Jeux::class, mappedBy="Categorie")
      */
     private $catjeux;
 
