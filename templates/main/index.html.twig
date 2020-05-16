@@ -21,7 +21,7 @@
 							<a href="index.php">Home</a>
 						</li>
 						<li>
-							<a href="#">CRUD jeux admin</a>
+							<a href="{{ path('jeux_index') }}">CRUD jeux admin</a>
 						</li>
 						<li>
 							<a href="#">Liste complète des jeux</a>
@@ -43,7 +43,7 @@
 				<p>Le top des jeux sur PC du moment !</p>
 				<ul class="actions special">
 					<li>
-						<a href="#" class="button primary">S'inscrire</a>
+						<a href="{{url('app_register')}}" class="button primary">S'inscrire</a>
 					</li>
 					<li>
 						<a href="#jeux" class="button">Nos meilleurs jeux</a>

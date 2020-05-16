@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Jeux index{% endblock %}
+
+{% block body %}
+    <h1>Jeux index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Date</th>
+                <th>Notemoyenne</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for jeux in jeuxes %}
+            <tr>
+                <td>{{ jeux.id }}</td>
+                <td>{{ jeux.nom }}</td>
+                <td>{{ jeux.date ? jeux.date|date('Y-m-d') : '' }}</td>
+                <td>{{ jeux.notemoyenne }}</td>
+                <td>
+                    <a href="{{ path('jeux_show', {'id': jeux.id}) }}">show</a>
+                    <a href="{{ path('jeux_edit', {'id': jeux.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('jeux_new') }}">Create new</a>
+{% endblock %}

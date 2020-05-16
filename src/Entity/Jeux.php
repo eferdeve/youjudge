@@ -35,7 +35,7 @@ class Jeux
     private $notemoyenne;
 
     /**
-     * @ORM\ManyToOne(targetEntity=categories::class, inversedBy="catjeux")
+     * @ORM\ManyToOne(targetEntity=Categories::class, inversedBy="catjeux")
      */
     private $categorie;
 
