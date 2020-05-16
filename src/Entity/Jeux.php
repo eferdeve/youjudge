@@ -30,7 +30,7 @@ class Jeux
     private $date;
 
     /**
-     * @ORM\Column(type="decimal", precision=4, scale=1)
+     * @ORM\Column(type="decimal", precision=4, scale=1, nullable=true)
      */
     private $notemoyenne;
 
@@ -44,9 +44,15 @@ class Jeux
      */
     private $commentaires;
 
+    /**
+     * @ORM\OneToMany(targetEntity=Notes::class, mappedBy="jeu", orphanRemoval=true)
+     */
+    private $notes;
+
     public function __construct()
     {
         $this->commentaires = new ArrayCollection();
+        $this->notes = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -127,6 +133,37 @@ class Jeux
             // set the owning side to null (unless already changed)
             if ($commentaire->getJeu() === $this) {
                 $commentaire->setJeu(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Notes[]
+     */
+    public function getNotes(): Collection
+    {
+        return $this->notes;
+    }
+
+    public function addNote(Notes $note): self
+    {
+        if (!$this->notes->contains($note)) {
+            $this->notes[] = $note;
+            $note->setJeu($this);
+        }
+
+        return $this;
+    }
+
+    public function removeNote(Notes $note): self
+    {
+        if ($this->notes->contains($note)) {
+            $this->notes->removeElement($note);
+            // set the owning side to null (unless already changed)
+            if ($note->getJeu() === $this) {
+                $note->setJeu(null);
             }
         }
 
