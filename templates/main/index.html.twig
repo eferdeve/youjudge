@@ -24,7 +24,7 @@
 							<a href="{{ path('jeux_index') }}">CRUD jeux admin</a>
 						</li>
 						<li>
-							<a href="#">Liste complète des jeux</a>
+							<a href="{{ path('liste') }}">Liste complète des jeux</a>
 						</li>
 						<li>
 							<a href="{{ path('app_register') }}" class="button">S'inscrire</a>
@@ -59,9 +59,7 @@
 						<h2>La liste des meilleurs jeux PC du moment</h2>
 						<div class="jumbotrom text-center">
 							<p>Bonjour à tous, et bienvenue sur la page d'accueil du site</p>
-						</br>
-						<p>Voici les jeux les plus joué du moment sur PC</p>
-					</div>
+						</div>
 				</header>
 				<span class="image featured"><img src="images/pic1.png" alt=""/></span>
 			</section>
@@ -69,26 +67,26 @@
 			<section id="jeux" class="box special features">
 				<div class="features-row">
 					<section>
-						<h3>
-
-						</h3>
+						<span class="icon solid major fas fa-users"></span>
+						<h3>Inscrivez-vous et créez votre compte</h3>
+						<p>Vous avez la possibilité d'accéder aux commentaires et aux notes déposées par les utilisateur inscris. Si vous désirez faire partis de la communauté, vous decez vous inscrire sur notre site via <a href="{{ path('app_register') }}">ce lien</a> !</p>
 					</section>
 					<section>
-						<span class="icon solid major fa-chart-area accent3"></span>
-						<h3>Ipsum dolor</h3>
-						<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
+						<span class="icon solid major fas fa-comments"></span>
+						<h3>Commentez vos jeux préférés</h3>
+						<p>Une fois membre de notre communauté, vous aurez le privilège de commenter les jeux de votre choix afin de faire grandir la crédibilité des critiques des jeux.</p>
 					</section>
 				</div>
 				<div class="features-row">
 					<section>
-						<span class="icon solid major fa-cloud accent4"></span>
-						<h3>Sed feugiat</h3>
-						<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
+						<span class="icon solid major fas fa-sort-numeric-up-alt"></span>
+						<h3>Notez les jeux</h3>
+						<p>Pensez à laisser une note de 1 à 9 sur les jeux de votre choix afin de récompenser ou de discrédité un jeu. Vous pourrez attribuer UNE note par jeu, donc soyez en sûre !</p>
 					</section>
 					<section>
-						<span class="icon solid major fa-lock accent5"></span>
-						<h3>Enim phasellus</h3>
-						<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
+						<span class="icon solid major fas fa-chalkboard-teacher"></span>
+						<h3>Consultez les fiches jeux et Streamers</h3>
+						<p>Vous pourrez accéder aux fiches des jeux et à nos streamers favoris. Vous aurez la vision sur l'état de leur stream en tant réel.</p>
 					</section>
 				</div>
 			</section>
@@ -98,11 +96,11 @@
 
 					<section class="box special">
 						<span class="image featured"><img src="images/pic02.jpg" alt=""/></span>
-						<h3>Sed lorem adipiscing</h3>
-						<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
+						<h3>Liste des jeux disponibles sur le site</h3>
+						<p>Découvrez les jeux disponibles sur notre site via le lien ci-dessous.</p>
 						<ul class="actions special">
 							<li>
-								<a href="#" class="button alt">Learn More</a>
+								<a href="{{ path('liste') }}" class="button alt">Liste des jeux</a>
 							</li>
 						</ul>
 					</section>
@@ -112,11 +110,11 @@
 
 					<section class="box special">
 						<span class="image featured"><img src="images/pic03.jpg" alt=""/></span>
-						<h3>Accumsan integer</h3>
-						<p>Integer volutpat ante et accumsan commophasellus sed aliquam feugiat lorem aliquet ut enim rutrum phasellus iaculis accumsan dolore magna aliquam veroeros.</p>
+						<h3>Accédez à la liste des streamers disponibles sur notre site</h3>
+						<p>Découvrez nos streamers coup de coeur que nous vous conseillerons forcément !</p>
 						<ul class="actions special">
 							<li>
-								<a href="#" class="button alt">Learn More</a>
+								<a href="#" class="button alt">Liste de nos streamers favoris</a>
 							</li>
 						</ul>
 					</section>

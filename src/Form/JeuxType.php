@@ -15,6 +15,7 @@ class JeuxType extends AbstractType
             ->add('nom')
             ->add('date')
             ->add('categorie')
+            ->add('synopsis')
         ;
     }
 

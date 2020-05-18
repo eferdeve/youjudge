@@ -1,9 +1,9 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Jeux{% endblock %}
+{% block title %}Admin Fiche jeu{% endblock %}
 
 {% block body %}
-    <h1>Jeux</h1>
+    <h2 class="text-center">{{ jeux.nom }}</h2>
 
     <table class="table">
         <tbody>
@@ -17,7 +17,7 @@
             </tr>
             <tr>
                 <th>Date</th>
-                <td>{{ jeux.date ? jeux.date|date('Y-m-d') : '' }}</td>
+                <td>{{ jeux.date ? jeux.date|date('d-m-Y') : '' }}</td>
             </tr>
             <tr>
                 <th>Notemoyenne</th>

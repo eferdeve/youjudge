@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des jeux{% endblock %}
+
+
+{% block body %}
+
+<table class="table table">
+
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Nom</th>
+      <th scope="col">Synopsis</th>
+      <th scope="col">Note Moyenne</th>
+      <th scope="col">Streamer préféré</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for jeu in jeux %}
+    <tr>
+        <th>{{jeu.nom}}</th>
+        <th> {{jeu.synopsis}} </th>
+        <th> {{jeu.notemoyenne}} </th>
+        <th> {{jeu.streamer}} </th>
+    </tr>
+    {% endfor %}
+  </tbody>
+
+</table>
+
+{% endblock %}

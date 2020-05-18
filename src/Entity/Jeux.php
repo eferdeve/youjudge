@@ -49,6 +49,16 @@ class Jeux
      */
     private $notes;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $synopsis;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $streamer;
+
     public function __construct()
     {
         $this->commentaires = new ArrayCollection();
@@ -166,6 +176,30 @@ class Jeux
                 $note->setJeu(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getSynopsis(): ?string
+    {
+        return $this->synopsis;
+    }
+
+    public function setSynopsis(string $synopsis): self
+    {
+        $this->synopsis = $synopsis;
+
+        return $this;
+    }
+
+    public function getStreamer(): ?string
+    {
+        return $this->streamer;
+    }
+
+    public function setStreamer(?string $streamer): self
+    {
+        $this->streamer = $streamer;
 
         return $this;
     }
