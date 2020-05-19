@@ -5,6 +5,10 @@ namespace App\Controller;
 use App\Entity\Jeux;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\Response;
+
+
+
 
 class MainController extends AbstractController
 {
@@ -27,6 +31,16 @@ class MainController extends AbstractController
         $jeux = $this->getDoctrine()->getRepository(Jeux::class)->findAll();
 
         return $this->render('main/liste.html.twig', [
+            'jeux' => $jeux,
+        ]);
+    }
+
+    /**
+     * @Route("/fiche", name="fiche", methods={"GET"})
+     */
+    public function fiche(Jeux $jeux): Response
+    {
+        return $this->render('main/fiche.html.twig', [
             'jeux' => $jeux,
         ]);
     }
