@@ -29,7 +29,7 @@
     <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
       <!-- Sidebar - Brand -->
-      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+      <a class="sidebar-brand d-flex align-items-center justify-content-center" href="{{ path('jeux_index') }}">
         <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-gamepad"></i>
         </div>
@@ -41,7 +41,7 @@
 
       <!-- Nav Item - Dashboard -->
       <li class="nav-item active">
-        <a class="nav-link" href="index.html">
+        <a class="nav-link" href="{{ path('jeux_index') }}">
           <i class="fas fa-fw fa-tachometer-alt"></i>
           <span>Tableau de bord</span></a>
       </li>
@@ -103,7 +103,7 @@
 
         <!-- Topbar -->
         <nav class="navbar navbar-expand navbar-light bg-white topbar mb-4 static-top shadow">
-          <p>Hello</p>
+          <p>Hello, je te souhaite une bonne administration :)</p>
           <!-- Sidebar Toggle (Topbar) -->
           <button id="sidebarToggleTop" class="btn btn-link d-md-none rounded-circle mr-3">
             <i class="fa fa-bars"></i>
@@ -260,7 +260,7 @@
         <div class="modal-body">Cliquez sur "Se déconnecter" mettra fin à votre session administrateur</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Annuler</button>
-          <a class="btn btn-primary" href="login.html">Se déconnecter</a>
+          <a class="btn btn-primary" href="{{ path('app_logout') }}">Se déconnecter</a>
         </div>
       </div>
     </div>
