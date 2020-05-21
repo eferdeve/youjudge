@@ -48,6 +48,11 @@ class Users implements UserInterface
      */
     private $note;
 
+    /**
+     * @ORM\Column(type="string", length=30)
+     */
+    private $pseudo;
+
     public function __construct()
     {
         $this->commentaires = new ArrayCollection();
@@ -190,6 +195,18 @@ class Users implements UserInterface
                 $note->setUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getPseudo(): ?string
+    {
+        return $this->pseudo;
+    }
+
+    public function setPseudo(string $pseudo): self
+    {
+        $this->pseudo = $pseudo;
 
         return $this;
     }
