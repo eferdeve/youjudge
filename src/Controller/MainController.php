@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Jeux;
+use App\Repository\JeuxRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,7 +37,7 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/fiche", name="fiche", methods={"GET"})
+     * @Route("/fiche/{id}", name="fiche", methods={"GET"})
      */
     public function fiche(Jeux $jeux): Response
     {

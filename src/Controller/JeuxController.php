@@ -15,8 +15,19 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class JeuxController extends AbstractController
 {
+
     /**
-     * @Route("/", name="jeux_index", methods={"GET"})
+     * @Route("/"), name="jeux_dashboard", methods={"GET"})
+     */
+    public function dashboard(JeuxRepository $jeuxRepository): Response
+    {
+        return $this->render('jeux/dashboard.html.twig', [
+            'jeuxes '=> $jeuxRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/adminliste", name="jeux_index", methods={"GET"})
      */
     public function index(JeuxRepository $jeuxRepository): Response
     {

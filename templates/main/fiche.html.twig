@@ -1,0 +1,28 @@
+{% extends 'basefront.html.twig' %}
+
+{% block title %}fiche jeu{% endblock %}
+
+{% block body %}
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Nom</th>
+                <td>{{ jeux.nom }}</td>
+            </tr>
+            <tr>
+                <th>Synopsis</th>
+                <td>{{ jeux.Synopsis }}</td>
+            </tr>
+            <tr>
+                <th>Date de sortie</th>
+                <td>{{ jeux.date ? jeux.date|date('d-m-Y') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Note moyenne attribuée par les joueurs</th>
+                <td>{{ jeux.notemoyenne }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+{% endblock %}
