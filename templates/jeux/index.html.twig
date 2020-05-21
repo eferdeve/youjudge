@@ -38,8 +38,8 @@
                       <td>{{ jeux.date ? jeux.date|date('Y-m-d') : '' }}</td>
                       <td>{{ jeux.notemoyenne }}</td>
                       <td>
-                        <a href="{{ path('jeux_show', {'id': jeux.id}) }}">show</a>
-                        <a href="{{ path('jeux_edit', {'id': jeux.id}) }}">edit</a>
+                        <a href="{{ path('jeux_show', {'id': jeux.id}) }}">Fiche jeu</a>
+                        <a href="{{ path('jeux_edit', {'id': jeux.id}) }}">Modifier</a>
                       </td>
                     </tr>
                     {% else %}
