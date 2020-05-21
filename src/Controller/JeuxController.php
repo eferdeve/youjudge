@@ -17,7 +17,7 @@ class JeuxController extends AbstractController
 {
 
     /**
-     * @Route("/"), name="jeux_dashboard", methods={"GET"})
+     * @Route("/", name="jeux_dashboard", methods={"GET"})
      */
     public function dashboard(JeuxRepository $jeuxRepository): Response
     {
