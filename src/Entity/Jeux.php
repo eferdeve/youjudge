@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use App\Entity\Commentaires;
 use App\Repository\JeuxRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;

@@ -2,6 +2,10 @@
 
 namespace App\Controller;
 
+use App\Entity\Commentaires;
+use App\Form\CommentairesType;
+use App\Repository\CommentairesRepository;
+use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Jeux;
 use App\Repository\JeuxRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -37,12 +41,26 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/fiche/{id}", name="fiche", methods={"GET"})
+     * @Route("/fiche/{id}", name="fiche", methods={"POST", "GET"})
      */
-    public function fiche(Jeux $jeux): Response
+    public function fiche(Jeux $jeux, Request $request): Response
     {
+        $commentaire = new Commentaires();
+        $commentaire->setCreatedAt(new \DateTime("NOW"));
+        $request = Request::createFromGlobals();
+        $commentaire->setJeu($request->query->get('id'));
+        $form = $this->createForm(CommentairesType::class, $commentaire);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($commentaire);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('commentaires_index');
+        }
         return $this->render('main/fiche.html.twig', [
             'jeux' => $jeux,
+            'form' => $form->createView(),
         ]);
     }
 }

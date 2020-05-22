@@ -25,23 +25,9 @@
         </tbody>
     </table>
 
-    <div class="container text-center">
-        <h3>Laisser un commentaire sur ce jeu</h3>
-    <div class="row d-flex justify-content-center">
-        
-    <div class="col-md-6">
-         <div class="widget-area no-padding blank">
-            <div class="status-upload ">
-                <form>
-                    <textarea placeholder="Votre avis ici" ></textarea>
-                    </br></br>
-                    <label for="customRange1">Laissez une note de 0 à 10 pour ce jeu</label>
-                    <input type="number" min="0" max="10" step="1"></input>
-                    </br></br>
-                    <button type="submit" class="btn btn-success green"><i class="fa fa-share"></i> Envoyez</button>
-                </form>
-            </div>
-        </div>
-    </div>          
+
+
+
+{{ include('commentaires/_form.html.twig') }}
 
 {% endblock %}

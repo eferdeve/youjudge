@@ -1,0 +1,5 @@
+{{ form_start(form) }}
+    <input type="hidden" value="{{jeux.id}}" name="idJeu">
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+{{ form_end(form) }}

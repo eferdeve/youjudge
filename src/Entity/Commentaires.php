@@ -34,13 +34,13 @@ class Commentaires
 
     /**
      * @ORM\ManyToOne(targetEntity=Jeux::class, inversedBy="commentaires")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $jeu;
 
     /**
      * @ORM\ManyToOne(targetEntity=Users::class, inversedBy="commentaires")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\JoinColumn(nullable=true)
      */
     private $auteur;
 
@@ -90,7 +90,7 @@ class Commentaires
         return $this->jeu;
     }
 
-    public function setJeu(?Jeux $jeu): self
+    public function setJeu($jeu): self
     {
         $this->jeu = $jeu;
 

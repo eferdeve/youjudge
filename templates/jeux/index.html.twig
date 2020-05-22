@@ -7,7 +7,7 @@
 
     <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Liste complète des jeux</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -38,8 +38,15 @@
                       <td>{{ jeux.date ? jeux.date|date('Y-m-d') : '' }}</td>
                       <td>{{ jeux.notemoyenne }}</td>
                       <td>
-                        <a href="{{ path('jeux_show', {'id': jeux.id}) }}">Fiche jeu</a>
-                        <a href="{{ path('jeux_edit', {'id': jeux.id}) }}">Modifier</a>
+                        <div class="container">
+                        <a class="btn btn-light" href="{{ path('jeux_show', {'id': jeux.id}) }}">Fiche jeu</a>
+                        <a class="btn btn-warning" href="{{ path('jeux_edit', {'id': jeux.id}) }}">Modifier</a>
+                        <form method="post" action="{{ path('jeux_delete', {'id': jeux.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                          <input type="hidden" name="_method" value="DELETE">
+                          <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ jeux.id) }}">
+                          <button class="btn btn-dark">Supprimer</button>
+                        </form>
+                        </div>
                       </td>
                     </tr>
                     {% else %}

@@ -2,6 +2,8 @@
 
 namespace App\Controller;
 
+use App\Entity\Commentaires;
+use App\Repository\CommentairesRepository;
 use App\Entity\Jeux;
 use App\Form\JeuxType;
 use App\Repository\JeuxRepository;
@@ -15,16 +17,6 @@ use Symfony\Component\Routing\Annotation\Route;
  */
 class JeuxController extends AbstractController
 {
-
-    /**
-     * @Route("/", name="jeux_dashboard", methods={"GET"})
-     */
-    public function dashboard(JeuxRepository $jeuxRepository): Response
-    {
-        return $this->render('jeux/dashboard.html.twig', [
-            'jeuxes '=> $jeuxRepository->findAll(),
-        ]);
-    }
 
     /**
      * @Route("/adminliste", name="jeux_index", methods={"GET"})
@@ -56,6 +48,46 @@ class JeuxController extends AbstractController
         return $this->render('jeux/new.html.twig', [
             'jeux' => $jeux,
             'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/", name="jeux_dashboard", methods={"GET"})
+     */
+    public function dashboard(JeuxRepository $jeuxRepository): Response
+    {
+        return $this->render('jeux/dashboard.html.twig', [
+            'jeuxes '=> $jeuxRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/commentaires", name="commentsList", methods={"GET"})
+     */
+    public function comments(CommentairesRepository $commentairesRepository): Response
+    {
+        return $this->render('commentaires/index.html.twig', [
+            'commentaires' => $commentairesRepository->findAll(),
+        ]);
+    }
+
+    /**
+     * @Route("/commentaires/{id}", name="comment", methods={"GET"})
+     */
+    public function comment(Commentaires $commentaire): Response
+    {
+        return $this->render('commentaires/show.html.twig', [
+            'commentaire' => $commentaire,
+        ]);
+    }
+
+    /**
+     * @Route("/{id}", name="comment_show", methods={"GET"})
+     */
+    public function commentShow(Commentaires $commentaire): Response
+    {
+        return $this->render('commentaires/show.html.twig', [
+            'commentaire' => $commentaire,
         ]);
     }
 
