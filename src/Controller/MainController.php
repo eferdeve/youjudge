@@ -43,18 +43,22 @@ class MainController extends AbstractController
     /**
      * @Route("/fiche/{id}", name="fiche", methods={"POST", "GET"})
      */
-    public function fiche(Jeux $jeux, Request $request): Response
+    public function fiche($id, Jeux $jeux, Request $request): Response
     {
         $commentaire = new Commentaires();
         $commentaire->setCreatedAt(new \DateTime("NOW"));
         $request = Request::createFromGlobals();
-        $commentaire->setJeu($request->query->get('id'));
+
+        //$id = $request->get('id');
+        $commentaire->setJeu($jeux);
+        
         $form = $this->createForm(CommentairesType::class, $commentaire);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($commentaire);
             $entityManager->flush();
+
 
             return $this->redirectToRoute('commentaires_index');
         }
