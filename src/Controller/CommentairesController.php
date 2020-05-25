@@ -18,30 +18,6 @@ class CommentairesController extends AbstractController
 {
 
     /**
-     * @Route("/new", name="commentaires_new", methods={"GET","POST"})
-     */
-    public function new(Request $request): Response
-    {
-        $commentaire = new Commentaires();
-        $commentaire->setCreatedAt(new \DateTime("NOW"));
-        $form = $this->createForm(CommentairesType::class, $commentaire);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($commentaire);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('commentaires_index');
-        }
-
-        return $this->render('commentaires/new.html.twig', [
-            'commentaire' => $commentaire,
-            'form' => $form->createView(),
-        ]);
-    }
-
-    /**
      * @Route("/{id}/edit", name="commentaires_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Commentaires $commentaire): Response
@@ -72,6 +48,6 @@ class CommentairesController extends AbstractController
             $entityManager->flush();
         }
 
-        return $this->redirectToRoute('commentaires_index');
+        return $this->redirectToRoute('commentsList');
     }
 }

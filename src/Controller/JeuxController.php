@@ -19,7 +19,7 @@ class JeuxController extends AbstractController
 {
 
     /**
-     * @Route("/adminliste", name="jeux_index", methods={"GET"})
+     * @Route("/jeux", name="jeux_index", methods={"GET"})
      */
     public function index(JeuxRepository $jeuxRepository): Response
     {
@@ -82,17 +82,7 @@ class JeuxController extends AbstractController
     }
 
     /**
-     * @Route("/{id}", name="comment_show", methods={"GET"})
-     */
-    public function commentShow(Commentaires $commentaire): Response
-    {
-        return $this->render('commentaires/show.html.twig', [
-            'commentaire' => $commentaire,
-        ]);
-    }
-
-    /**
-     * @Route("/{id}", name="jeux_show", methods={"GET"})
+     * @Route("/jeux/{id}", name="jeux_show", methods={"GET"})
      */
     public function show(Jeux $jeux): Response
     {

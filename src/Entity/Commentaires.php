@@ -2,6 +2,7 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping\JoinColumn;
 use App\Repository\CommentairesRepository;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -23,17 +24,13 @@ class Commentaires
     private $contenu;
 
     /**
-     * @ORM\Column(type="boolean")
-     */
-    private $actif;
-
-    /**
      * @ORM\Column(type="datetime")
      */
     private $created_at;
 
     /**
      * @ORM\ManyToOne(targetEntity=Jeux::class, inversedBy="commentaires")
+     * @JoinColumn(name="jeu_id", referencedColumnName="id")
      * @ORM\JoinColumn(nullable=true)
      */
     private $jeu;
@@ -57,18 +54,6 @@ class Commentaires
     public function setContenu(string $contenu): self
     {
         $this->contenu = $contenu;
-
-        return $this;
-    }
-
-    public function getActif(): ?bool
-    {
-        return $this->actif;
-    }
-
-    public function setActif(bool $actif): self
-    {
-        $this->actif = $actif;
 
         return $this;
     }

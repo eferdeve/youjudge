@@ -45,24 +45,28 @@ class MainController extends AbstractController
      */
     public function fiche($id, Jeux $jeux, Request $request): Response
     {
+        $id = (int)$request->get('id');
+        $commentaires = $this->getDoctrine()->getRepository(Jeux::class)->find($id);
+
         $commentaire = new Commentaires();
         $commentaire->setCreatedAt(new \DateTime("NOW"));
         $request = Request::createFromGlobals();
-
-        //$id = $request->get('id');
         $commentaire->setJeu($jeux);
-        
         $form = $this->createForm(CommentairesType::class, $commentaire);
         $form->handleRequest($request);
+
+        //test variable
+        //dd($id);
+        
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($commentaire);
             $entityManager->flush();
 
-
-            return $this->redirectToRoute('commentaires_index');
+            return $this->redirectToRoute('liste');
         }
         return $this->render('main/fiche.html.twig', [
+            'commentaires' => $commentaires,
             'jeux' => $jeux,
             'form' => $form->createView(),
         ]);
