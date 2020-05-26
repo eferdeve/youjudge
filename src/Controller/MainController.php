@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Commentaires;
 use App\Form\CommentairesType;
 use App\Repository\CommentairesRepository;
@@ -43,30 +44,24 @@ class MainController extends AbstractController
     /**
      * @Route("/fiche/{id}", name="fiche", methods={"POST", "GET"})
      */
-    public function fiche($id, Jeux $jeux, Request $request): Response
+    public function fiche(Request $request, Jeux $jeux, EntityManagerInterface $em): Response
     {
-        $id = (int)$request->get('id');
-        $commentaires = $this->getDoctrine()->getRepository(Jeux::class)->find($id);
-
-        $commentaire = new Commentaires();
-        $commentaire->setCreatedAt(new \DateTime("NOW"));
-        $request = Request::createFromGlobals();
-        $commentaire->setJeu($jeux);
-        $form = $this->createForm(CommentairesType::class, $commentaire);
+        $form = $this->createForm(CommentairesType::class);
         $form->handleRequest($request);
-
-        //test variable
-        //dd($id);
-        
+    
         if ($form->isSubmitted() && $form->isValid()) {
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($commentaire);
-            $entityManager->flush();
-
+            $commentaire = $form->getData();
+            $commentaire->setCreatedAt(new \DateTime("NOW"));
+            $jeux->addCommentaire($commentaire);
+    
+            $em->persist($commentaire);
+            $em->flush();
+    
             return $this->redirectToRoute('liste');
         }
+    
         return $this->render('main/fiche.html.twig', [
-            'commentaires' => $commentaires,
+            'commentaires' => $jeux->getCommentaires(),
             'jeux' => $jeux,
             'form' => $form->createView(),
         ]);

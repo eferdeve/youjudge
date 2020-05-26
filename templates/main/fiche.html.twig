@@ -40,7 +40,10 @@
 
     <div class="container">
     <h3 class="text-center">Avis des autres joueurs</h3>
-       {{}}
+      {% for commentaire in commentaires %}
+        <h3>Auteur</h3>
+        <p>{{ commentaire.contenu }}</p>
+      {% endfor %}
     </div>
 
 
