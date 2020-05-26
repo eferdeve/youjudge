@@ -9,8 +9,7 @@
             <tr>
                 <th>Id</th>
                 <th>Contenu</th>
-                <th>Actif</th>
-                <th>Created_at</th>
+                <th>Date de publication</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -19,8 +18,7 @@
             <tr>
                 <td>{{ commentaire.id }}</td>
                 <td>{{ commentaire.contenu }}</td>
-                <td>{{ commentaire.actif ? 'Yes' : 'No' }}</td>
-                <td>{{ commentaire.createdAt ? commentaire.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ commentaire.createdAt ? commentaire.createdAt|date('d-m-Y H:i:s') : '' }}</td>
                 <td>
                     <a href="{{ path('comment', {'id': commentaire.id}) }}">show</a>
                     <a href="{{ path('commentaires_edit', {'id': commentaire.id}) }}">edit</a>
