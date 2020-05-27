@@ -5,9 +5,12 @@
 
 {% block body %}
 
-<input type="search" class="form-control form-control-sm" placeholder="Rechercher un jeu..." aria-controls="dataTable">
-<table class="table table">
 
+<h2>Liste des jeux</h2>
+
+<input type="text" id="myInput" onkeyup="searchBar()" placeholder="Rechercher un jeu.." title="Type in a name">
+
+<table class="table table" id="myTable">
   <thead class="thead-dark">
     <tr>
       <th scope="col">Nom</th>
@@ -16,21 +19,38 @@
       <th scope="col">Streamer préféré</th>
     </tr>
   </thead>
-  <tbody>
   {% for jeu in jeux %}
+  <tbody>
     <tr>
-        <th><a href="{{ path('fiche', {'id': jeu.id}) }}">{{jeu.nom}}</a></th>
-        <th> {{jeu.synopsis}} </th>
-        <th> {{jeu.notemoyenne}} </th>
-        <th> {{jeu.streamer}} </th>
+        <td><a href="{{ path('fiche', {'id': jeu.id}) }}">{{jeu.nom}}</a></th>
+        <td> {{jeu.synopsis}} </th>
+        <td> {{jeu.notemoyenne}} </th>
+        <td> {{jeu.streamer}} </th>
     </tr>
     {% endfor %}
-  </tbody>
-
-  
-
+    </tbody>
 </table>
 
+<script>
+function searchBar() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
 
 
 
