@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+use App\Entity\Notes;
+use App\Form\NotesType;
+use App\Repository\NotesRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use App\Entity\Commentaires;
 use App\Form\CommentairesType;
@@ -48,6 +51,7 @@ class MainController extends AbstractController
     {
         $form = $this->createForm(CommentairesType::class);
         $form->handleRequest($request);
+        
     
         if ($form->isSubmitted() && $form->isValid()) {
             $commentaire = $form->getData();
@@ -57,12 +61,37 @@ class MainController extends AbstractController
             $em->persist($commentaire);
             $em->flush();
     
-            return $this->redirectToRoute('liste');
+            return $this->redirectToRoute($request->getUri());
         }
     
         return $this->render('main/fiche.html.twig', [
             'commentaires' => $jeux->getCommentaires(),
             'jeux' => $jeux,
+            'form' => $form->createView(),
+        ]);
+    }
+
+    /**
+     * @Route("/note/{id}", name="notes_new", methods={"GET","POST"})
+     */
+    public function new(Request $request, Jeux $jeux): Response
+    {
+        $note = new Notes();
+        $form = $this->createForm(NotesType::class, $note);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $entityManager = $this->getDoctrine()->getManager();
+            $var = $form->getData();
+            $var->setJeu($jeux);
+            $entityManager->persist($note);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('liste');
+        }
+
+        return $this->render('notes/new.html.twig', [
+            'note' => $note,
             'form' => $form->createView(),
         ]);
     }

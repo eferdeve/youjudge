@@ -18,14 +18,14 @@ class Notes
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity=users::class, inversedBy="jeu")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity=Users::class, inversedBy="jeu")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $user;
 
     /**
-     * @ORM\ManyToOne(targetEntity=jeux::class, inversedBy="notes")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\ManyToOne(targetEntity=Jeux::class, inversedBy="notes")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $jeu;
 

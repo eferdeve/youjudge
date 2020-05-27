@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<title>Notes index</title>
+
+{% block body %}
+    <h1>Notes index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Note</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for note in notes %}
+            <tr>
+                <td>{{ note.id }}</td>
+                <td>{{ note.note }}</td>
+                <td>
+                    <a href="{{ path('notes_show', {'id': note.id}) }}">show</a>
+                    <a href="{{ path('notes_edit', {'id': note.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="3">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('notes_new') }}">Create new</a>
+{% endblock %}
