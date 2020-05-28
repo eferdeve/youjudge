@@ -6,26 +6,26 @@
 {% block body %}
 
 
-<h2>Liste des jeux</h2>
+<h2 class="text-center">Liste des jeux</h2>
 
 <input type="text" id="myInput" onkeyup="searchBar()" placeholder="Rechercher un jeu.." title="Type in a name">
 
 <table class="table table" id="myTable">
   <thead class="thead-dark">
     <tr>
-      <th scope="col">Nom</th>
-      <th scope="col">Synopsis</th>
-      <th scope="col">Note Moyenne</th>
-      <th scope="col">Streamer préféré</th>
+      <th class="text-center" scope="col">Nom</th>
+      <th class="text-center" scope="col">Synopsis</th>
+      <th class="text-center" scope="col">Note Moyenne</th>
+      <th class="text-center" scope="col">Streamer préféré</th>
     </tr>
   </thead>
   {% for jeu in jeux %}
   <tbody>
     <tr>
-        <td><a href="{{ path('fiche', {'id': jeu.id}) }}">{{jeu.nom}}</a></th>
-        <td> {{jeu.synopsis}} </th>
-        <td> {{jeu.notemoyenne}} </th>
-        <td> {{jeu.streamer}} </th>
+        <td class="text-center"><a href="{{ path('fiche', {'id': jeu.id}) }}">{{jeu.nom}}</a></th>
+        <td class="text-center"> {{jeu.synopsis}} </th>
+        <td class="text-center"> {{jeu.notemoyenne}} </th>
+        <td class="text-center"> {{jeu.streamer}} </th>
     </tr>
     {% endfor %}
     </tbody>
