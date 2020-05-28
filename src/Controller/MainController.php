@@ -39,6 +39,12 @@ class MainController extends AbstractController
         // Appel de tout les jeux
         $jeux = $this->getDoctrine()->getRepository(Jeux::class)->findAll();
 
+        // Test moyenne debut
+        $notes = $this->getDoctrine()->getRepository(Notes::class)->findAll();
+        
+        dd($notes);
+        // Test moyenne fin
+
         return $this->render('main/liste.html.twig', [
             'jeux' => $jeux,
         ]);
@@ -79,6 +85,7 @@ class MainController extends AbstractController
         $note = new Notes();
         $form = $this->createForm(NotesType::class, $note);
         $form->handleRequest($request);
+
 
         if ($form->isSubmitted() && $form->isValid()) {
             $entityManager = $this->getDoctrine()->getManager();

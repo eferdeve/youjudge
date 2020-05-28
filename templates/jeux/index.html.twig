@@ -20,6 +20,7 @@
                       <th>Nom</th>
                       <th>Date</th>
                       <th>Note moyenne</th>
+                      <th>Streamer favoris</th>
                       <th>Actions</th>
                     </tr>
                   </thead>
@@ -29,6 +30,7 @@
                       <th>Nom</th>
                       <th>Date</th>
                       <th>Note moyenne</th>
+                      <th>Streamer favoris</th>
                       <th>Actions</th>
                     </tr>
                   </tfoot>
@@ -39,6 +41,7 @@
                       <td>{{ jeux.nom }}</td>
                       <td>{{ jeux.date ? jeux.date|date('Y-m-d') : '' }}</td>
                       <td>{{ jeux.notemoyenne }}</td>
+                      <td>{{ jeux.streamer }}</td>
                       <td>
                         <div class="container">
                         <a class="btn btn-light" href="{{ path('jeux_show', {'id': jeux.id}) }}">Fiche jeu</a>
@@ -63,23 +66,23 @@
           </div>
 
           <script>
-function searchBar() {
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("myTable");
-  tr = table.getElementsByTagName("tr");
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[1];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }       
-  }
-}
-</script>
+            function searchBar() {
+              var input, filter, table, tr, td, i, txtValue;
+              input = document.getElementById("myInput");
+              filter = input.value.toUpperCase();
+              table = document.getElementById("myTable");
+              tr = table.getElementsByTagName("tr");
+              for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                  txtValue = td.textContent || td.innerText;
+                  if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                  } else {
+                    tr[i].style.display = "none";
+                  }
+                }       
+              }
+            }
+          </script>
 {% endblock %}
