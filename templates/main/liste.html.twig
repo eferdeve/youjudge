@@ -15,21 +15,26 @@
     <tr>
       <th class="text-center" scope="col">Nom</th>
       <th class="text-center" scope="col">Synopsis</th>
-      <th class="text-center" scope="col">Note Moyenne</th>
       <th class="text-center" scope="col">Streamer préféré</th>
+      <th class="text-center" scope="col">Note moyenne</th>
     </tr>
   </thead>
   {% for jeu in jeux %}
   <tbody>
     <tr>
-        <td class="text-center"><a href="{{ path('fiche', {'id': jeu.id}) }}">{{jeu.nom}}</a></th>
-        <td class="text-center"> {{jeu.synopsis}} </th>
-        <td class="text-center"> {{jeu.notemoyenne}} </th>
-        <td class="text-center"> {{jeu.streamer}} </th>
+        <td class="text-center"><a href="{{ path('fiche', {'id': jeu.id}) }}">{{jeu.nom}}</a></td>
+        <td class="text-center"> {{jeu.synopsis}} </td>
+        <td class="text-center"> {{jeu.streamer}} </td>
+        <td class="text-center"> ... </td>
     </tr>
     {% endfor %}
     </tbody>
 </table>
+
+{% for moy in moyenne %}
+  <p>{{ moy.jeu_id }}</p>
+  <p>{{ moy.moyenne }}</p>
+{% endfor %}
 
 <script>
 function searchBar() {

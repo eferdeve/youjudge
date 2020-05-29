@@ -34,18 +34,14 @@ class MainController extends AbstractController
     /**
      * @Route("/liste", name="liste")
      */
-    public function ListeJeux()
+    public function ListeJeux(NotesRepository $n)
     {
         // Appel de tout les jeux
         $jeux = $this->getDoctrine()->getRepository(Jeux::class)->findAll();
-
-        // Test moyenne debut
-        $notes = $this->getDoctrine()->getRepository(Notes::class)->findAll();
+        $moyenne = $n->avgNote();
         
-        dd($notes);
-        // Test moyenne fin
-
         return $this->render('main/liste.html.twig', [
+            'moyenne' =>$moyenne,
             'jeux' => $jeux,
         ]);
     }

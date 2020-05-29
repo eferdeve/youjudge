@@ -22,19 +22,30 @@ class NotesRepository extends ServiceEntityRepository
     // /**
     //  * @return Notes[] Returns an array of Notes objects
     //  */
-    /*
-    public function findByExampleField($value)
+    
+    /*public function avgNote()
     {
         return $this->createQueryBuilder('n')
-            ->andWhere('n.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('n.id', 'ASC')
-            ->setMaxResults(10)
+            ->select('avg(n.note) as moyenne, n.jeu')
+            ->groupBy('n.jeu')
             ->getQuery()
             ->getResult()
         ;
     }
     */
+
+    public function avgNote()
+    {
+        $db = $this->getEntityManager()->getConnection();
+
+        $req = "SELECT *, AVG(note) AS moyenne FROM notes GROUP BY jeu_id";
+
+        $result = $db->prepare($req);
+        $result->execute();
+
+        return $result->fetchAll();
+    }
+    
 
     /*
     public function findOneBySomeField($value): ?Notes
