@@ -49,14 +49,9 @@ class Users implements UserInterface
     private $note;
 
     /**
-     * @ORM\Column(type="string", length=30)
+     * @ORM\Column(type="string", length=30, nullable=true)
      */
     private $pseudo;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $created_at;
 
     public function __construct()
     {
@@ -212,18 +207,6 @@ class Users implements UserInterface
     public function setPseudo(string $pseudo): self
     {
         $this->pseudo = $pseudo;
-
-        return $this;
-    }
-
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->created_at;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $created_at): self
-    {
-        $this->created_at = $created_at;
 
         return $this;
     }
