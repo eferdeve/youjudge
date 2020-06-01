@@ -22,9 +22,8 @@
 						<li>
 							<a href="{{ path('liste') }}">Liste complète des jeux</a>
 						</li>
-						
 						<li>
-							<a href="{{url('app_register')}}" class="button">Vous êtes connecté en tant que ""</a>
+							<a href="{{ path('streamers') }}">Liste des streamers</a>
 						</li>
 						<li>
 							<a href="{{url('app_register')}}" class="button">S'inscrire</a>
@@ -63,6 +62,8 @@
 		
 
 		<!-- Scripts -->
+			<script src="{{ asset('APIs/twitch.js') }}"></script>
+			<script src="{{ asset('APIs/mainAPIS.js') }}"></script>
 			<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
 			<script src="{{ asset('assets/js/jquery.dropotron.min.js') }}"></script>
 			<script src="{{ asset('assets/js/jquery.scrollex.min.js') }}"></script>

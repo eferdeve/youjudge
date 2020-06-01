@@ -32,9 +32,17 @@ class MainController extends AbstractController
     }
 
     /**
-     * @Route("/liste", name="liste")
+     * @Route("/liste_streamers", name="streamers")
      */
-    public function ListeJeux(NotesRepository $n)
+    public function listeStreamers()
+    {
+        return $this->render('main/streamers.html.twig');
+    }
+
+    /**
+     * @Route("/liste_jeux", name="liste")
+     */
+    public function listeJeux(NotesRepository $n)
     {
         // Appel de tout les jeux
         $jeux = $this->getDoctrine()->getRepository(Jeux::class)->findAll();

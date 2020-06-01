@@ -74,12 +74,16 @@
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <i class="fas fa-fw fa-wrench"></i>
-          <span>Gérer les commentaires</span>
+          <span>Gérer les utilisateurs</span>
         </a>
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <h6 class="collapse-header">Les commentaires:</h6>
             <a class="collapse-item" href="{{ path('commentsList') }}">Liste des commentaires</a>
+          </div>
+          <div class="bg-white py-2 collapse-inner rounded">
+            <h6 class="collapse-header">Les utilisateurs:</h6>
+            <a class="collapse-item" href="{{ path('user_list') }}">Liste des utilisateurs</a>
           </div>
         </div>
       </li>

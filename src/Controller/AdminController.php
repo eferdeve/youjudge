@@ -56,7 +56,7 @@ class AdminController extends AbstractController
             return $this->redirectToRoute('jeux_index');
         }
 
-        return $this->render('admin/newgame.html.twig', [
+        return $this->render('admin/game_new.html.twig', [
             'jeux' => $jeux,
             'form' => $form->createView(),
         ]);

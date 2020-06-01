@@ -15,8 +15,9 @@
     <tr>
       <th class="text-center" scope="col">Nom</th>
       <th class="text-center" scope="col">Synopsis</th>
+      <th class="text-center" scope="col">Note moyenne du jeu</th>
       <th class="text-center" scope="col">Streamer préféré</th>
-      <th class="text-center" scope="col">Note moyenne</th>
+      <th class="text-center" scope="col">status du streamer</th>
     </tr>
   </thead>
   {% for jeu in jeux %}
@@ -24,7 +25,8 @@
     <tr>
         <td class="text-center"><a href="{{ path('fiche', {'id': jeu.id}) }}">{{jeu.nom}}</a></td>
         <td class="text-center"> {{jeu.synopsis}} </td>
-        <td class="text-center"> {{jeu.streamer}} </td>
+        <td class="text-center"> ... </td>
+        <td class="text-center"> <a href="https://www.twitch.tv/{{jeu.streamer}}" target="blank">{{jeu.streamer}} </a></td>
         <td class="text-center"> ... </td>
     </tr>
     {% endfor %}

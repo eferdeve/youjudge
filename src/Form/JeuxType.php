@@ -16,6 +16,7 @@ class JeuxType extends AbstractType
             ->add('date')
             ->add('categorie')
             ->add('synopsis')
+            ->add('streamer')
         ;
     }
 
