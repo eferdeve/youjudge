@@ -20,10 +20,15 @@
             </tr>
             <tr>
                 <th>Note moyenne attribuée par les joueurs</th>
-                <td>{{ jeux.notemoyenne }}</td>
+                <td>...</td>
             </tr>
         </tbody>
     </table>
+
+    {% for moy in moyenne %}
+        {{ moy.moyenne }}
+    {% endfor %}
+
 
         
 

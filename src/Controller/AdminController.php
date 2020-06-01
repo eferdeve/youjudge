@@ -7,6 +7,7 @@ use App\Repository\CommentairesRepository;
 use App\Entity\Jeux;
 use App\Form\JeuxType;
 use App\Repository\JeuxRepository;
+use App\Repository\UsersRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,15 +16,25 @@ use Symfony\Component\Routing\Annotation\Route;
 /**
  * @Route("/admin")
  */
-class JeuxController extends AbstractController
+class AdminController extends AbstractController
 {
+
+    /**
+     * @Route("/users", name="user_list", methods={"GET"})
+     */
+    public function userList(UsersRepository $UsersRepository)
+    {
+        return $this->render('admin/userList.html.twig', [
+            'users' => $UsersRepository->findAll(),
+        ]);
+    }
 
     /**
      * @Route("/jeux", name="jeux_index", methods={"GET"})
      */
     public function index(JeuxRepository $jeuxRepository): Response
     {
-        return $this->render('jeux/index.html.twig', [
+        return $this->render('admin/game_index.html.twig', [
             'jeuxes' => $jeuxRepository->findAll(),
         ]);
     }
@@ -45,7 +56,7 @@ class JeuxController extends AbstractController
             return $this->redirectToRoute('jeux_index');
         }
 
-        return $this->render('jeux/new.html.twig', [
+        return $this->render('admin/newgame.html.twig', [
             'jeux' => $jeux,
             'form' => $form->createView(),
         ]);
@@ -56,7 +67,7 @@ class JeuxController extends AbstractController
      */
     public function dashboard(JeuxRepository $jeuxRepository): Response
     {
-        return $this->render('jeux/dashboard.html.twig', [
+        return $this->render('admin/dashboard.html.twig', [
             'jeuxes '=> $jeuxRepository->findAll(),
         ]);
     }
@@ -66,7 +77,7 @@ class JeuxController extends AbstractController
      */
     public function comments(CommentairesRepository $commentairesRepository): Response
     {
-        return $this->render('commentaires/index.html.twig', [
+        return $this->render('admin/comments_index.html.twig', [
             'commentaires' => $commentairesRepository->findAll(),
         ]);
     }
@@ -76,7 +87,7 @@ class JeuxController extends AbstractController
      */
     public function comment(Commentaires $commentaire): Response
     {
-        return $this->render('commentaires/show.html.twig', [
+        return $this->render('admin/comment_show.html.twig', [
             'commentaire' => $commentaire,
         ]);
     }
@@ -86,13 +97,13 @@ class JeuxController extends AbstractController
      */
     public function show(Jeux $jeux): Response
     {
-        return $this->render('jeux/show.html.twig', [
+        return $this->render('admin/game_show.html.twig', [
             'jeux' => $jeux,
         ]);
     }
 
     /**
-     * @Route("/{id}/edit", name="jeux_edit", methods={"GET","POST"})
+     * @Route("/edit/{id}", name="jeux_edit", methods={"GET","POST"})
      */
     public function edit(Request $request, Jeux $jeux): Response
     {
@@ -105,7 +116,7 @@ class JeuxController extends AbstractController
             return $this->redirectToRoute('jeux_index');
         }
 
-        return $this->render('jeux/edit.html.twig', [
+        return $this->render('admin/game_edit.html.twig', [
             'jeux' => $jeux,
             'form' => $form->createView(),
         ]);

@@ -49,11 +49,11 @@ class MainController extends AbstractController
     /**
      * @Route("/fiche/{id}", name="fiche", methods={"POST", "GET"})
      */
-    public function fiche(Request $request, Jeux $jeux, EntityManagerInterface $em): Response
+    public function fiche(Request $request, Jeux $jeux, EntityManagerInterface $em, NotesRepository $n): Response
     {
         $form = $this->createForm(CommentairesType::class);
         $form->handleRequest($request);
-        
+        $moyenne = $n->avgNote();
     
         if ($form->isSubmitted() && $form->isValid()) {
             $commentaire = $form->getData();
@@ -67,6 +67,7 @@ class MainController extends AbstractController
         }
     
         return $this->render('main/fiche.html.twig', [
+            'moyenne' => $moyenne,
             'commentaires' => $jeux->getCommentaires(),
             'jeux' => $jeux,
             'form' => $form->createView(),

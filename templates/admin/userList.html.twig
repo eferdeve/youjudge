@@ -1,0 +1,88 @@
+{% extends 'baseback.html.twig' %}
+
+{% block title %}Administration des utilisateurs{% endblock %}
+
+{% block body %}
+
+<h2 class="text-center">Liste des jeux</h2>
+
+    <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">Liste complète des jeux</h6>
+            </div>
+            <input type="text" id="myInput" onkeyup="searchBar()" placeholder="Rechercher un jeu.." title="Type in a name">
+
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Id</th>
+                      <th>Email</th>
+                      <th>Pseudo</th>
+                      <th>Date de création du compte</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>Id</th>
+                      <th>Email</th>
+                      <th>Pseudo</th>
+                      <th>Date de création du compte</th>
+                      <th>Actions</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                    {% for user in users %}
+                    <tr>
+                      <td>{{ user.id }}</td>
+                      <td>{{ user.email }}</td>
+                      <td>{{ user.pseudo }}</td>
+                      <td>{{ user.createdAt ? user.createdAt|date('Y-m-d') : '' }}</td>
+                      <td>
+                        <div class="container">
+                        <a class="btn btn-warning" href="{{ path('jeux_edit', {'id': user.id}) }}">Bannir ce compte</a>
+                        <form method="post" action="{{ path('jeux_delete', {'id': user.id}) }}" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                          <input type="hidden" name="_method" value="DELETE">
+                          <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+                          <button class="btn btn-dark">Bannir cet utilisateur</button>
+                        </form>
+                        </div>
+                      </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="5">no records found</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <script>
+            function searchBar() {
+              var input, filter, table, tr, td, i, txtValue;
+              input = document.getElementById("myInput");
+              filter = input.value.toUpperCase();
+              table = document.getElementById("myTable");
+              tr = table.getElementsByTagName("tr");
+              for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                  txtValue = td.textContent || td.innerText;
+                  if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                  } else {
+                    tr[i].style.display = "none";
+                  }
+                }       
+              }
+            }
+          </script>
+
+
+
+{% endblock %} 
