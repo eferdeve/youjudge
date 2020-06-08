@@ -48,8 +48,14 @@ class MainController extends AbstractController
         $jeux = $this->getDoctrine()->getRepository(Jeux::class)->findAll();
         $moyenne = $n->avgNote();
         
+        if ($moyenne) {
+            foreach ($moyenne as $moy) {
+                $mm[$moy["jeu_id"]] = $moy["moyenne"];
+            }
+        }
+
         return $this->render('main/liste.html.twig', [
-            'moyenne' =>$moyenne,
+            'moyenne' =>$mm,
             'jeux' => $jeux,
         ]);
     }
@@ -61,8 +67,12 @@ class MainController extends AbstractController
     {
         $form = $this->createForm(CommentairesType::class);
         $form->handleRequest($request);
-        $moyenne = $n->avgNote();
+        $moyenne = $n->targetAvg($jeux->getId());
     
+        if ($moyenne == null) {
+            $moyenne['moyenne'] = "Ce jeu ne dispose pas de note";
+        } 
+
         if ($form->isSubmitted() && $form->isValid()) {
             $commentaire = $form->getData();
             $commentaire->setCreatedAt(new \DateTime("NOW"));

@@ -45,6 +45,19 @@ class NotesRepository extends ServiceEntityRepository
 
         return $result->fetchAll();
     }
+
+    public function targetAvg($id)
+    {
+        $db = $this->getEntityManager()->getConnection();
+
+        $req = "SELECT *, AVG(note) AS moyenne FROM notes WHERE jeu_id = ?  GROUP BY jeu_id";
+
+        $result = $db->prepare($req);
+        $result->execute(array($id));
+
+        return $result->fetch();
+    }
+    
     
 
     /*

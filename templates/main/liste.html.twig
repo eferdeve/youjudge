@@ -15,30 +15,30 @@
     <tr>
       <th class="text-center" scope="col">Nom</th>
       <th class="text-center" scope="col">Synopsis</th>
-      <th class="text-center" scope="col">Note moyenne du jeu</th>
       <th class="text-center" scope="col">Streamer préféré</th>
       <th class="text-center" scope="col">status du streamer</th>
+      <th class="text-center" scope="col">Note moyenne du jeu</th>
+
     </tr>
   </thead>
   {% for jeu in jeux %}
   <tbody>
     <tr>
-        <td class="text-center"><a href="{{ path('fiche', {'id': jeu.id}) }}">{{jeu.nom}}</a></td>
-        <td class="text-center"> {{jeu.synopsis}} </td>
-        <td class="text-center"> ... </td>
-        <td class="text-center"> <a href="https://www.twitch.tv/{{jeu.streamer}}" target="blank">{{jeu.streamer}} </a></td>
-        <td class="text-center"> ... </td>
-    </tr>
-    {% endfor %}
-    </tbody>
+      <td class="text-center"><a href="{{ path('fiche', {'id': jeu.id}) }}">{{jeu.nom}}</a></td>
+      <td class="text-center"> {{jeu.synopsis}} </td>
+      <td class="text-center"> ... </td>
+      <td class="text-center"> <a href="https://www.twitch.tv/{{jeu.streamer}}" target="blank">{{jeu.streamer}} </a></td>
+  
+      {% if jeu.id in moyenne|keys %}
+      <td>{{ moyenne[jeu.id] }}</td>
+      {% else %}
+      <td>Pas de note disponible</td>
+      {% endif %}
+  {% endfor %}
+
+  </tbody>
 </table>
 
-
-
-{% for moy in moyenne %}
-  <p>{{ moy.jeu_id }}</p>
-  <p>{{ moy.moyenne }}</p>
-{% endfor %}
 
 <script>
 function searchBar() {
