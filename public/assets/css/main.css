@@ -3163,10 +3163,10 @@
 	#banner {
 		background-attachment: scroll,							fixed;
 		background-color: #666;
-		background-image: url("../images/pic3.png"), url("../images/banner.jpg");
+		background-image: url("images/pic3.png"), url("../../images/banner.jpg");
 		background-position: top left,						center center;
 		background-repeat: 						no-repeat;
-		background-size: auto,							cover;
+		background-size: 							cover;
 		color: #fff;
 		padding: 12em 0 20em 0;
 		text-align: center;
