@@ -26,8 +26,8 @@
     <tr>
       <td class="text-center"><a href="{{ path('fiche', {'id': jeu.id}) }}">{{jeu.nom}}</a></td>
       <td class="text-center"> {{jeu.synopsis}} </td>
-      <td class="text-center"> ... </td>
       <td class="text-center"> <a href="https://www.twitch.tv/{{jeu.streamer}}" target="blank">{{jeu.streamer}} </a></td>
+      <td class="text-center"> 000000000000 </td>
       {% if jeu.id in moyenne|keys %}
         <td><h3><span class="badge badge-secondary">{{ moyenne[jeu.id] }}</span></h3></td>
       {% else %}

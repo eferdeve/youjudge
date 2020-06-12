@@ -2,3 +2,40 @@
 
 {% block title %}Liste des streamers{% endblock %}
 
+{% block body %}
+
+
+<h2 class="text-center">Streamers Français</h2>
+
+ <div class="container">
+        <h1 class="py-1 text-center">Streamers FR</h1>
+
+        <div class="py-2">
+            <button id="LOL" class="btn btn-dark" onclick="getLoLData(LANG)">League Of Legends</button>
+            <button id="LOL" class="btn btn-dark" onclick="getValorantData(LANG)">Valorant</button>
+            <button id="LOL" class="btn btn-dark" onclick="getTftData(LANG)">Teamfight Tactics</button>
+            <button id="LOL" class="btn btn-dark" onclick="getDestiny2Data(LANG)">Destiny 2</button>
+        </div>
+        <div id="LolBlock" style="display:none">
+            <div class="row" id="block1">
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% endblock %}
