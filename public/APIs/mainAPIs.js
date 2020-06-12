@@ -7,7 +7,7 @@ let LANG = 'fr';
 //XMLHttpRequest
 function getLoLData(LANG) {
     clearData();
-    let apiUrl = `https://api.twitch.tv/kraken/streams/?game=League%20of%20Legends&limit=6&language=${LANG} `;
+    let apiUrl = `https://api.twitch.tv/kraken/streams/?game=League%20of%20Legends&limit=20&language=${LANG} `;
     let request = new XMLHttpRequest();
     request.open('GET', apiUrl, true);
     request.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json');
@@ -32,7 +32,7 @@ function getLoLData(LANG) {
 
 function getValorantData(LANG) {
     clearData();
-    let apiUrl = `https://api.twitch.tv/kraken/streams/?game=Valorant&limit=6&language=${LANG} `;
+    let apiUrl = `https://api.twitch.tv/kraken/streams/?game=Valorant&limit=20&language=${LANG} `;
     let request = new XMLHttpRequest();
     request.open('GET', apiUrl, true);
     request.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json');
@@ -57,7 +57,7 @@ function getValorantData(LANG) {
 
 function getTftData(LANG) {
     clearData();
-    let apiUrl = `https://api.twitch.tv/kraken/streams/?game=Teamfight%20Tactics&limit=6&language=${LANG} `;
+    let apiUrl = `https://api.twitch.tv/kraken/streams/?game=Teamfight%20Tactics&limit=20&language=${LANG} `;
     let request = new XMLHttpRequest();
     request.open('GET', apiUrl, true);
     request.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json');
@@ -82,7 +82,7 @@ function getTftData(LANG) {
 
 function getDestiny2Data(LANG) {
     clearData();
-    let apiUrl = `https://api.twitch.tv/kraken/streams/?game=Destiny%202&limit=6&language=${LANG} `;
+    let apiUrl = `https://api.twitch.tv/kraken/streams/?game=Destiny%202&limit=10&language=${LANG} `;
     let request = new XMLHttpRequest();
     request.open('GET', apiUrl, true);
     request.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json');
