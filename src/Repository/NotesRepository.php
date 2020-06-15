@@ -19,21 +19,6 @@ class NotesRepository extends ServiceEntityRepository
         parent::__construct($registry, Notes::class);
     }
 
-    // /**
-    //  * @return Notes[] Returns an array of Notes objects
-    //  */
-    
-    /*public function avgNote()
-    {
-        return $this->createQueryBuilder('n')
-            ->select('avg(n.note) as moyenne, n.jeu')
-            ->groupBy('n.jeu')
-            ->getQuery()
-            ->getResult()
-        ;
-    }
-    */
-
     public function avgNote()
     {
         $db = $this->getEntityManager()->getConnection();
@@ -53,6 +38,30 @@ class NotesRepository extends ServiceEntityRepository
         $req = "SELECT *, AVG(note) AS moyenne FROM notes WHERE jeu_id = ?  GROUP BY jeu_id";
 
         $result = $db->prepare($req);
+        $result->execute(array($id));
+
+        return $result->fetch();
+    }
+
+    public function noteCount()
+    {
+        $db = $this->getEntityManager()->getConnection();
+
+        $req = "SELECT COUNT(id) AS total FROM notes";
+        $result = $db->prepare($req);
+
+        $result->execute();
+
+        return $result->fetch();
+    }
+
+    public function noteCountQuery($id)
+    {
+        $db = $this->getEntityManager()->getConnection();
+
+        $req = "SELECT COUNT(id) AS total FROM notes WHERE jeu_id = ?";
+        $result = $db->prepare($req);
+
         $result->execute(array($id));
 
         return $result->fetch();

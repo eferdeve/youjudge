@@ -47,6 +47,7 @@ class MainController extends AbstractController
         // Appel de tout les jeux
         $jeux = $this->getDoctrine()->getRepository(Jeux::class)->findAll();
         $moyenne = $n->avgNote();
+        $total = $n->noteCount();
         
         if ($moyenne) {
             foreach ($moyenne as $moy) {
@@ -55,7 +56,8 @@ class MainController extends AbstractController
         }
 
         return $this->render('main/liste.html.twig', [
-            'moyenne' =>$mm,
+            'total' => $total,
+            'moyenne' => $mm,
             'jeux' => $jeux,
         ]);
     }

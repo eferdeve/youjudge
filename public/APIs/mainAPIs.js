@@ -159,7 +159,7 @@ function getColumn(data) {
         <th class="text-center" scope="col">Nom</th>
         <th class="text-center" scope="col">Chaîne</th>
         <th class="text-center" scope="col">Intitulé du stream</th>
-        <th class="text-center" scope="col">Viewer</th>
+        <th class="text-center" scope="col">Viewers</th>
       </tr>
     </thead>
     <tbody>

@@ -7,8 +7,12 @@
 
 
 <h2 class="text-center">Liste des jeux</h2>
+{% for tot in total %}
+<h3>Total des notes : {{tot}}</h3>
+{% endfor %}
 
 <input type="text" id="myInput" onkeyup="searchBar()" placeholder="Rechercher un jeu.. (Nom, Note, streamer, extrait de synopsis)" title="Type in a name">
+
 
 <table class="table table" id="myTable">
   <thead class="thead-dark">
@@ -35,6 +39,7 @@
   {% endfor %}
   </tbody>
 </table>
+
 
 
 <script>
