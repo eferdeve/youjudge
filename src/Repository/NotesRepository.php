@@ -55,16 +55,16 @@ class NotesRepository extends ServiceEntityRepository
         return $result->fetch();
     }
 
-    public function noteCountQuery($id)
+    public function noteCountQuery()
     {
         $db = $this->getEntityManager()->getConnection();
 
-        $req = "SELECT COUNT(id) AS total FROM notes WHERE jeu_id = ?";
+        $req = "SELECT COUNT(id) AS total FROM notes GROUP BY jeu_id";
         $result = $db->prepare($req);
 
-        $result->execute(array($id));
+        $result->execute(array());
 
-        return $result->fetch();
+        return $result->fetchAll();
     }
     
     

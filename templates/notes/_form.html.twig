@@ -1,4 +1,5 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
+   
+    {{ form_row(form.note,{"attr":{'min':0,'max':10}}) }}
     <button class="btn">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}

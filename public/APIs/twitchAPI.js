@@ -4,6 +4,7 @@
 let clientId = '6v1t2gynoz847exl4u7l32nft321d2';
 let LANG = 'fr';
 
+
 //XMLHttpRequest
 function getLoLData(LANG) {
     clearData();

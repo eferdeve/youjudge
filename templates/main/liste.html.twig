@@ -11,7 +11,7 @@
 <h3>Total des notes : {{tot}}</h3>
 {% endfor %}
 
-<input type="text" id="myInput" onkeyup="searchBar()" placeholder="Rechercher un jeu.. (Nom, Note, streamer, extrait de synopsis)" title="Type in a name">
+<input type="text" id="myInput" onkeyup="searchBar()" placeholder="Rechercher un jeu..." title="Type in a name">
 
 
 <table class="table table" id="myTable">
@@ -35,10 +35,13 @@
       {% else %}
         <td><h4><span class="badge badge-secondary">Pas de note disponible</span></h4></td>
       {% endif %}
-      <td class="text-center"> ... </td>
+      <td class="text-center">  </td>
   {% endfor %}
   </tbody>
 </table>
+
+{{dump(totalQuery)}}
+
 
 
 
