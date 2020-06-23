@@ -3,7 +3,65 @@
 {% block title %}Administration des jeux{% endblock %}
 
 {% block body %}
-    <h2 class="text-center">Liste des jeux</h2>
+<div class="container-fluid">
+
+          <!-- Page Heading -->
+          <h1 class="h3 mb-2 text-gray-800">Tables</h1>
+          <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+
+          <!-- DataTales Example -->
+          <div class="card shadow mb-4">
+            <div class="card-header py-3">
+              <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered dataTable" width="100%" cellspacing="0">
+                  <thead>
+                    <tr>
+                      <th>Id</th>
+                      <th>Nom</th>
+                      <th>Date</th>
+                      <th>Note moyenne</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tfoot>
+                    <tr>
+                      <th>Id</th>
+                      <th>Nom</th>
+                      <th>Date</th>
+                      <th>Note moyenne</th>
+                      <th>Actions</th>
+                    </tr>
+                  </tfoot>
+                  <tbody>
+                    {% for jeux in jeuxes %}
+                    <tr>
+                      <td>{{ jeux.id }}</td>
+                      <td>{{ jeux.nom }}</td>
+                      <td>{{ jeux.date ? jeux.date|date('Y-m-d') : '' }}</td>
+                      <td>{{ jeux.notemoyenne }}</td>
+                      <td>
+                        <a href="{{ path('jeux_show', {'id': jeux.id}) }}">show</a>
+                        <a href="{{ path('jeux_edit', {'id': jeux.id}) }}">edit</a>
+                      </td>
+                    </tr>
+                    {% else %}
+                    <tr>
+                        <td colspan="5">no records found</td>
+                    </tr>
+                    {% endfor %}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        
+    <!--<h2 class="text-center">Liste des jeux</h2>
 
     <div class="card shadow mb-4">
             <div class="card-header py-3">
@@ -63,7 +121,7 @@
                 </table>
               </div>
             </div>
-          </div>
+          </div> -->
 
           <script>
             function searchBar() {
@@ -86,3 +144,4 @@
             }
           </script>
 {% endblock %}
+
