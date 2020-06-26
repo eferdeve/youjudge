@@ -28,6 +28,7 @@ class AdminController extends AbstractController
             'users' => $UsersRepository->findAll(),
         ]);
     }
+    
 
     /**
      * @Route("/jeux", name="jeux_index", methods={"GET"})

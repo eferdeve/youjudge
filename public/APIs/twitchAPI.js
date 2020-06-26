@@ -106,43 +106,7 @@ function getDestiny2Data(LANG) {
     $('#LolBlock').show();
 };
 
-//JQuery AJAX
-function getMSData(LANG) {
-    clearData();
-    let apiUrl2 = `https://api.twitch.tv/kraken/streams/?game=MapleStory&limit=6&language=${LANG} `;
 
-    // AJAX寫法1
-    // $.ajax({
-    //     url: apiUrl2,
-    //     headers: {
-    //         'Accept': 'application/vnd.twitchtv.v5+json',
-    //         'client-ID': clientId,
-    //     },
-    //     success: (data2) => {
-    //         getData(data2, block2);
-    //     },
-    //     error: function () {
-    //         console.log('JQuery Ajax Error');
-    //     }
-    // })
-
-    // AJAX寫法2
-    $.ajax({
-        url: apiUrl2,
-        headers: {
-            'Accept': 'application/vnd.twitchtv.v5+json',
-            'client-ID': clientId,
-        }
-    })
-    .done(data2 => getData(data2, block2))
-    .fail(() => console.log('JQuery Ajax Error'))
-    .always(()=>console.log('complete'));
-
-
-
-    $('#LolBlock').hide();
-    $('#MSBlock').show();
-};
 
 function getData(data, block) {
     const streams = data.streams;

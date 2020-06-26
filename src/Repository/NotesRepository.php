@@ -55,7 +55,9 @@ class NotesRepository extends ServiceEntityRepository
         return $result->fetch();
     }
 
-    public function noteCountQuery()
+    //Nombre total de note par jeu, à rajouter si le site prend de l'ampleur..
+    
+    /*public function noteCountQuery()
     {
         $db = $this->getEntityManager()->getConnection();
 
@@ -66,6 +68,7 @@ class NotesRepository extends ServiceEntityRepository
 
         return $result->fetchAll();
     }
+    */
     
     
 

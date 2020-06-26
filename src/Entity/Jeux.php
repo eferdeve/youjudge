@@ -51,7 +51,7 @@ class Jeux
     private $notes;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=500)
      */
     private $synopsis;
 

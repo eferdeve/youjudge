@@ -21,7 +21,6 @@
       <th class="text-center" scope="col">Synopsis</th>
       <th class="text-center" scope="col">Streamer préféré</th>
       <th class="text-center" scope="col">Note moyenne du jeu</th>
-      <th class="text-center" scope="col">Nombre de notes</th>
     </tr>
   </thead>
   {% for jeu in jeux %}
@@ -35,12 +34,9 @@
       {% else %}
         <td><h4><span class="badge badge-secondary">Pas de note disponible</span></h4></td>
       {% endif %}
-      <td class="text-center">  </td>
   {% endfor %}
   </tbody>
 </table>
-
-{{dump(totalQuery)}}
 
 
 
