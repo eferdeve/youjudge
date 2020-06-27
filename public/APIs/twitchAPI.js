@@ -4,6 +4,31 @@
 let clientId = '6v1t2gynoz847exl4u7l32nft321d2';
 let LANG = 'fr';
 
+function gettd2Data(LANG) {
+    clearData();
+    let apiUrl = `https://api.twitch.tv/kraken/streams/?game=Tom%20Clancy's%20The%20Division%202&limit=20&language=${LANG} `;
+    let request = new XMLHttpRequest();
+    request.open('GET', apiUrl, true);
+    request.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json');
+    request.setRequestHeader('Client-ID', clientId);
+    request.send();
+
+    request.onload = function load() {
+
+        if (this.status >= 200 && this.status < 400) {
+            let data = JSON.parse(this.responseText);
+            getData(data, block1);
+
+        } else {
+            console.log('Error');
+        }
+    };
+    request.onerror = function error() {
+        console.log('Error');
+    };
+    $('#LolBlock').show();
+};
+
 
 //XMLHttpRequest
 function getLoLData(LANG) {
@@ -130,7 +155,7 @@ function getColumn(data) {
     <tbody>
       <tr>
           <td class="text-center"><span id="nom">${data.channel.display_name}</span></td>
-          <td class="text-center"><span id="chaine"><a href="https://www.twitch.tv/${data.channel.name}" target="blank"> ${data.channel.name}</a></span></td>
+          <td class="text-center"><span id="chaine"><a href="https://www.twitch.tv/${data.channel.name}" target="blank"><i class="fas fa-link"></i>   ${data.channel.name}</a></span></td>
           <td class="text-center"><span id="status">${data.channel.status}</span></td>
           <td class="text-center text-danger"><span id="jeu"><i class="fa fa-user"></i> ${data.viewers}</span></td>
       </tr>

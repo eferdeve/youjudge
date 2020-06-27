@@ -30,7 +30,7 @@
 
         
     <div class="container text-center">
-        <a href="{{ path('notes_new', {'id': jeux.id}) }}"><i class="fas fa-arrow-right"></i>  Noter ce jeu</a>
+        <a href="{{ path('notes_new', {'id': jeux.id}) }}" class="myButtonNote"><i class="fas fa-arrow-right"></i>  Noter ce jeu (Inscris uniquement)</a>
     </div>
 
 
@@ -38,16 +38,20 @@
     
 
     <div class="container">
-        <h3 class="text-center">Laissez un commentaire</h3>
+        <h3 class="text-center">Laissez un commentaire (Inscris uniquement)</h3>
         {{ include('commentaires/_form.html.twig') }}
     </div>
 
     <div class="container">
     <h3 class="text-center">Avis des autres joueurs</h3>
-      {% for commentaire in commentaires %}
-        <h3>Auteur</h3>
-        <p>{{ commentaire.contenu }}</p>
-      {% endfor %}
+        
+        {% for commentaire in commentaires %}
+        <div class="bubble">
+            <h3>Auteur</h3>
+            <p>{{ commentaire.contenu }}</p>
+        </div>
+        {% endfor %}
+        
     </div>
 
 

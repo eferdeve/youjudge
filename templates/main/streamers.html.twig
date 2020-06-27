@@ -5,16 +5,21 @@
 {% block body %}
 
 
-<h2 class="text-center">Streamers Français en ligne</h2>
+<h1 class="ml15 text-center">
+  <span class="word">Les</span>
+  <span class="word">streamers</span>
+</h1>
 
  <div class="container">
         <h1 class="py-1 text-center">Streamers FR</h1>
+        <p class="text-center">"Cliquez sur un jeu pour afficher la liste des streamers français sur la plateforme Twitch. Les plus populaires seront en tête de liste et uniquement ceux qui sont connectés."</p>
 
         <div class="py-2 text-center">
             <button id="LOL" class="btn btn-dark" onclick="getLoLData(LANG)">League Of Legends</button>
             <button id="LOL" class="btn btn-dark" onclick="getValorantData(LANG)">Valorant</button>
             <button id="LOL" class="btn btn-dark" onclick="getTftData(LANG)">Teamfight Tactics</button>
             <button id="LOL" class="btn btn-dark" onclick="getDestiny2Data(LANG)">Destiny 2</button>
+            <button id="LOL" class="btn btn-dark" onclick="gettd2Data(LANG)">Tom Clancy's The Division 2</button>
         </div>
             <table class="table table" id="myTable">
     <thead class="thead-dark">

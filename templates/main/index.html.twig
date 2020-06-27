@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="./assets/css/style.css"/>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 	</head>
 	<body class="landing is-preload">
 		<div
@@ -21,13 +22,13 @@
 				<nav id="nav">
 					<ul>
 						<li>
-							<a href="{{ path('home') }}">Accueil</a>
+							<a href="{{ path('home') }}"><i class="fas fa-home"></i>  Accueil</a>
 						</li>
 						<li>
-							<a href="{{ path('liste') }}">Liste complète des jeux</a>
+							<a href="{{ path('liste') }}"><i class="fas fa-stream"></i>  Liste complète des jeux</a>
 						</li>
 						<li>
-							<a href="{{ path('streamers') }}">Liste des streamers</a>
+							<a href="{{ path('streamers') }}"><i class="fab fa-twitch"></i>  Liste des streamers</a>
 						</li>
 						{% if is_granted('IS_AUTHENTICATED_FULLY') %}
     						<li><a> Connecté en tant que : {{ app.user.username }}</a></li>
@@ -47,11 +48,11 @@
 
 			<!-- Banner -->
 			<section id="banner">
-				<h2>YouJudge</h2>
+				<h2 class="ml3">YouJudge</h2>
 				<p>Le top des jeux sur PC du moment !</p>
 				<ul class="actions special">
 					<li>
-						<a href="{{url('app_register')}}" class="button primary">S'inscrire</a>
+						<a href="{{url('app_register')}}" class="button">S'inscrire</a>
 					</li>
 					<li>
 						<a href="{{ path('liste') }}" class="button">Nos meilleurs jeux</a>
@@ -98,6 +99,7 @@
 					</section>
 				</div>
 			</section>
+			
 
 			<div class="row">
 				<div class="col-6 col-12-narrower">
