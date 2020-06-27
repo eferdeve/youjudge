@@ -69,6 +69,7 @@ class MainController extends AbstractController
      */
     public function fiche(Request $request, Jeux $jeux, EntityManagerInterface $em, NotesRepository $n): Response
     {
+        
         $form = $this->createForm(CommentairesType::class);
         $form->handleRequest($request);
         $moyenne = $n->targetAvg($jeux->getId());
@@ -78,6 +79,7 @@ class MainController extends AbstractController
         } 
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
             $commentaire = $form->getData();
             $commentaire->setCreatedAt(new \DateTime("NOW"));
             $jeux->addCommentaire($commentaire);
@@ -104,6 +106,7 @@ class MainController extends AbstractController
         $note = new Notes();
         $form = $this->createForm(NotesType::class, $note);
         $form->handleRequest($request);
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -117,6 +120,7 @@ class MainController extends AbstractController
         }
 
         return $this->render('notes/new.html.twig', [
+            'jeux' => $jeux,
             'note' => $note,
             'form' => $form->createView(),
         ]);

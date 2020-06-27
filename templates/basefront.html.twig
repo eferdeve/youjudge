@@ -20,21 +20,23 @@
 								<a href="{{ path('home') }}">Accueil</a>
 							</li>
 							<li>
-								<a href="{{ path('jeux_dashboard') }}">Espace administrateur</a>
-							</li>
-							<li>
 								<a href="{{ path('liste') }}">Liste complète des jeux</a>
 							</li>
 							<li>
 								<a href="{{ path('streamers') }}">Liste des streamers</a>
 							</li>
+							{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+								<li><a> Connecté en tant que : {{ app.user.username }}</a></li>
+								<li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
+							{% else %}
 							<li>
-								<a href="{{url('app_register')}}" class="button">S'inscrire</a>
+								<a href="{{ path('app_register') }}" class="button">S'inscrire</a>
 							</li>
-						 	ou
+							ou
 							<li>
-								<a href="{{url('app_login')}}" class="button">Se connecter</a>
+								<a href="{{ path('app_login') }}" class="button">Se connecter</a>
 							</li>
+							{% endif %}
 						</ul>
 					</nav>
 				</header>
@@ -55,6 +57,22 @@
 				{% block javascripts %}{% endblock %}
 			<!-- Footer -->
 				<footer id="footer">
+					<nav>
+						<ul>
+							<li>
+								<a href="{{ path('home') }}">Home</a>
+							</li>
+							<li>
+								<a href="{{ path('jeux_dashboard') }}">Espace administrateur</a>
+							</li>
+							<li>
+								<a href="{{ path('liste') }}">Liste complète des jeux</a>
+							</li>
+							<li>
+								<a href="{{ path('streamers') }}">Liste des streamers</a>
+							</li>
+						</ul>
+					</nav>
 					<ul class="copyright">
 						<li>YouJudge. Tout droits réservés. 2020</li>
 					</ul>

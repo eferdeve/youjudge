@@ -26,7 +26,7 @@
   {% for jeu in jeux %}
   <tbody>
     <tr>
-      <td class="text-center"><a href="{{ path('fiche', {'id': jeu.id}) }}">{{jeu.nom}}</a></td>
+      <td class="text-center"><i class="fas fa-arrow-down"></i></br><a href="{{ path('fiche', {'id': jeu.id}) }}">{{jeu.nom}}</a></td>
       <td class="text-center"> {{jeu.synopsis}} </td>
       <td class="text-center"> <a href="https://www.twitch.tv/{{jeu.streamer}}" target="blank">{{jeu.streamer}} </a></td>
       {% if jeu.id in moyenne|keys %}

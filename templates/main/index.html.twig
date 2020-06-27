@@ -21,10 +21,7 @@
 				<nav id="nav">
 					<ul>
 						<li>
-							<a href="{{ path('home') }}">Home</a>
-						</li>
-						<li>
-							<a href="{{ path('jeux_dashboard') }}">Espace administrateur</a>
+							<a href="{{ path('home') }}">Accueil</a>
 						</li>
 						<li>
 							<a href="{{ path('liste') }}">Liste complète des jeux</a>
@@ -32,6 +29,10 @@
 						<li>
 							<a href="{{ path('streamers') }}">Liste des streamers</a>
 						</li>
+						{% if is_granted('IS_AUTHENTICATED_FULLY') %}
+    						<li><a> Connecté en tant que : {{ app.user.username }}</a></li>
+							<li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
+						{% else %}
 						<li>
 							<a href="{{ path('app_register') }}" class="button">S'inscrire</a>
 						</li>
@@ -39,6 +40,7 @@
 						<li>
 							<a href="{{ path('app_login') }}" class="button">Se connecter</a>
 						</li>
+						{% endif %}
 					</ul>
 				</nav>
 			</header>
@@ -75,7 +77,7 @@
 					<section>
 						<span class="icon solid major fas fa-users"></span>
 						<h3>Inscrivez-vous et créez votre compte</h3>
-						<p>Vous avez la possibilité d'accéder aux commentaires et aux notes déposées par les utilisateur inscris. Si vous désirez faire partis de la communauté, vous decez vous inscrire sur notre site via <a href="{{ path('app_register') }}">ce lien</a> !</p>
+						<p>Vous avez la possibilité d'accéder aux commentaires et aux notes déposées par les utilisateur inscris. Si vous désirez faire partie de la communauté, vous devez vous inscrire sur notre site via <a href="{{ path('app_register') }}">ce lien</a> !</p>
 					</section>
 					<section>
 						<span class="icon solid major fas fa-comments"></span>
@@ -144,6 +146,22 @@
 
 		<!-- Footer -->
 		<footer id="footer">
+		<nav>
+			<ul>
+				<li>
+					<a href="{{ path('home') }}">Home</a>
+				</li>
+				<li>
+					<a href="{{ path('jeux_dashboard') }}">Espace administrateur</a>
+				</li>
+				<li>
+					<a href="{{ path('liste') }}">Liste complète des jeux</a>
+				</li>
+				<li>
+					<a href="{{ path('streamers') }}">Liste des streamers</a>
+				</li>
+			</ul>
+		</nav>
 			<ul class="copyright">
 				<li>&copy; YouJudge. Tout Droits Réservés.</li>
 			</ul>
