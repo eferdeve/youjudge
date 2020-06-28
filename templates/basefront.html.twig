@@ -1,105 +1,114 @@
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>{% block title %}Welcome!{% endblock %}</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<title>
+			{% block title %}Welcome!
+			{% endblock %}
+		</title>
+		<meta charset="utf-8"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"/>
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-		<link rel="stylesheet" href="{{ asset('assets/css/main.css') }}" />
-		<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}" />
+		<link rel="stylesheet" href="{{ asset('assets/css/main.css') }}"/>
+		<link rel="stylesheet" href="{{ asset('assets/css/style.css') }}"/>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
 	</head>
 	<body class="is-preload">
-		<div id="page-wrapper">
+		<div
+			id="page-wrapper">
 
 			<!-- Header -->
-				<header id="header">
-					<h1><a href="{{ path('home') }}">YouJudge</a></h1>
-					<nav id="nav">
-						<ul>
+			<header id="header">
+				<h1>
+					<a href="{{ path('home') }}">YouJudge</a>
+				</h1>
+				<nav id="nav">
+					<ul>
+						<li>
+							<a href="{{ path('home') }}">
+								<i class="fas fa-home"></i>
+								Accueil</a>
+						</li>
+						<li>
+							<a href="{{ path('liste') }}">
+								<i class="fas fa-stream"></i>
+								Liste complète des jeux</a>
+						</li>
+						<li>
+							<a href="{{ path('streamers') }}">
+								<i class="fab fa-twitch"></i>
+								Liste des streamers</a>
+						</li>
+						{% if is_granted('IS_AUTHENTICATED_FULLY') %}
 							<li>
-								<a href="{{ path('home') }}"><i class="fas fa-home"></i>  Accueil</a>
-							</li>
-							<li>
-								<a href="{{ path('liste') }}"><i class="fas fa-stream"></i>  Liste complète des jeux</a>
-							</li>
-							<li>
-								<a href="{{ path('streamers') }}"><i class="fab fa-twitch"></i>  Liste des streamers</a>
-							</li>
-							{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-								<li><a> Connecté en tant que : {{ app.user.username }}</a></li>
-								<li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
+								<a href="#" class="icon solid fa-angle-down">Bonjour
+									{{ app.user.pseudo }}</a>
+								<ul>
+									<li>
+										<a href="{{ path('users_index') }}">Mon profile</a>
+									</li>
+									<li>
+										<a href="{{ path('app_logout') }}">Se déconnecter</a>
+									</li>
+								</ul>
 							{% else %}
-							<li>
-								<a href="{{ path('app_register') }}" class="button">S'inscrire</a>
-							</li>
-							ou
-							<li>
-								<a href="{{ path('app_login') }}" class="button">Se connecter</a>
-							</li>
+								<li>
+									<a href="{{ path('app_register') }}" class="button">S'inscrire</a>
+								</li>
+								ou
+								<li>
+									<a href="{{ path('app_login') }}" class="button">Se connecter</a>
+								</li>
 							{% endif %}
 						</ul>
 					</nav>
 				</header>
 
-			<!-- Main -->
+				<!-- Main -->
 				<section id="main" class="container">
 					<header>
 						<h2 class="ml3">YouJudge</h2>
 					</header>
-					<div class="box">
-						{% block body %}{% endblock %}
-					</div>
+					<div class="box"> {% block body %}{% endblock %}
+						</div>
 
 
-					
-
-				</section>
-				{% block javascripts %}{% endblock %}
-			<!-- Footer -->
-				<footer id="footer">
-					<nav>
-						<ul>
+					</section>
+					{% block javascripts %}{% endblock %}
+					<!-- Footer -->
+					<footer id="footer">
+						<nav>
+							<ul>
+								<li><a href="{{ path('home') }}">Home</a></li>
+								<li><a href="{{ path('jeux_dashboard') }}">Espace administrateur</a></li>
+								<li><a href="{{ path('liste') }}">Liste complète des jeux</a></li>
+								<li><a href="{{ path('streamers') }}">Liste des streamers</a></li>
+							</ul>
+						</nav>
+						<ul class="copyright">
 							<li>
-								<a href="{{ path('home') }}">Home</a>
-							</li>
-							<li>
-								<a href="{{ path('jeux_dashboard') }}">Espace administrateur</a>
-							</li>
-							<li>
-								<a href="{{ path('liste') }}">Liste complète des jeux</a>
-							</li>
-							<li>
-								<a href="{{ path('streamers') }}">Liste des streamers</a>
-							</li>
+								<i class="far fa-copyright"></i>YouJudge. Tout droits réservés. 2020</li>
 						</ul>
-					</nav>
-					<ul class="copyright">
-						<li><i class="far fa-copyright"></i>YouJudge. Tout droits réservés. 2020</li>
-					</ul>
-				</footer>
+					</footer>
 
-		</div>
-		
+				</div>
 
-		<!-- Scripts -->
-			<script src="assets/js/designJS/design.js"></script>
-			<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
-			<script src="{{ asset('assets/js/jquery.dropotron.min.js') }}"></script>
-			<script src="{{ asset('assets/js/jquery.scrollex.min.js') }}"></script>
-			<script src="{{ asset('assets/js/browser.min.js') }}"></script>
-			<script src="{{ asset('assets/js/breakpoints.min.js') }}"></script>
-			<script src="{{ asset('assets/js/util.js') }}"></script>
-			<script src="{{ asset('assets/js/main.js') }}"></script>
-			<script src="{{ asset('APIs/twitchAPI.js') }}"></script> 
 
-			<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-			<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-			<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-	
+				<!-- Scripts -->
+				<script src="assets/js/designJS/design.js"></script>
+				<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+				<script src="{{ asset('assets/js/jquery.dropotron.min.js') }}"></script>
+				<script src="{{ asset('assets/js/jquery.scrollex.min.js') }}"></script>
+				<script src="{{ asset('assets/js/browser.min.js') }}"></script>
+				<script src="{{ asset('assets/js/breakpoints.min.js') }}"></script>
+				<script src="{{ asset('assets/js/util.js') }}"></script>
+				<script src="{{ asset('assets/js/main.js') }}"></script>
+				<script src="{{ asset('APIs/twitchAPI.js') }}"></script>
 
-	</body>
-</html>
-
+				<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+				<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+				<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+			</body>
+		</body>
+	</html>

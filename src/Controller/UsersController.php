@@ -3,8 +3,11 @@
 namespace App\Controller;
 
 use App\Entity\Users;
+use App\Form\EditProfileType;
 use App\Form\UsersType;
 use App\Repository\UsersRepository;
+use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -17,6 +20,14 @@ class UsersController extends AbstractController
 {
 
     /**
+     * @Route("/", name="users_index", methods={"GET"})
+     */
+    public function index(): Response
+    {
+        return $this->render('users/index.html.twig');
+    }
+
+    /**
      * @Route("/{id}", name="users_show", methods={"GET"})
      */
     public function show(Users $user): Response
@@ -27,21 +38,24 @@ class UsersController extends AbstractController
     }
 
     /**
-     * @Route("/{id}/edit", name="users_edit", methods={"GET","POST"})
+     * @Route("/edit", name="users_edit")
      */
-    public function edit(Request $request, Users $user): Response
-    {
-        $form = $this->createForm(UsersType::class, $user);
+    public function editProfile(Request $request, EntityManager $em): Response
+    {     
+        $user = $this->getUser();   
+        $form = $this->createForm(EditProfileType::class, $user);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->getDoctrine()->getManager()->flush();
+            $em = $this->getDoctrine()->getManager();
+            $em->flush();
 
-            return $this->redirectToRoute('users_index');
+            $this->addflash('message', 'Profile mis à jour');
+
+            return $this->redirectToRoute('users');
         }
 
-        return $this->render('users/edit.html.twig', [
-            'user' => $user,
+        return $this->render('users/editprofile.html.twig', [
             'form' => $form->createView(),
         ]);
     }
@@ -51,7 +65,7 @@ class UsersController extends AbstractController
      */
     public function delete(Request $request, Users $user): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$user->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $user->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($user);
             $entityManager->flush();

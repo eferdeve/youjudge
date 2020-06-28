@@ -10,6 +10,7 @@
    border-radius: 10px;
    padding: 14px;
    margin: 20px;
+   box-shadow: 10px 10px 10px;
 }
 
 .bubble:after
@@ -107,5 +108,3 @@
 	display: inline-block;
 	line-height: 1em;
   }
-
-  

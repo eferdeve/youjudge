@@ -6,13 +6,12 @@
 <div class="container-fluid">
 
           <!-- Page Heading -->
-          <h1 class="h3 mb-2 text-gray-800">Tables</h1>
-          <p class="mb-4">DataTables is a third party plugin that is used to generate the demo table below. For more information about DataTables, please visit the <a target="_blank" href="https://datatables.net">official DataTables documentation</a>.</p>
+          <h1 class="h3 mb-2 text-gray-800">Commentaires</h1>
 
           <!-- DataTales Example -->
           <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Liste des commentaires</h6>
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -41,9 +40,7 @@
                       <td>{{ commentaire.contenu }}</td>
                       <td>{{ commentaire.createdAt ? commentaire.createdAt|date('d-m-Y H:i:s') : '' }}</td>
                       <td>
-                        <a href="{{ path('comment', {'id': commentaire.id}) }}">show</a>
-                        <a href="{{ path('commentaires_edit', {'id': commentaire.id}) }}">edit</a>
-                        
+                        <a href="{{ path('comment', {'id': commentaire.id}) }}">Voir</a>                        
                       </td>
                     </tr>
                     {% else %}
@@ -58,65 +55,5 @@
           </div>
 
         </div>
-    <!-- <h1>Commentaires index</h1>
-        <div class="card shadow mb-4">
-            <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Liste complète des jeux</h6>
-            </div>
-
-    <table class="table" id="myTable">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Contenu</th>
-                <th>Date de publication</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for commentaire in commentaires %}
-            <tr>
-                <td>{{ commentaire.id }}</td>
-                <td>{{ commentaire.contenu }}</td>
-                <td>{{ commentaire.createdAt ? commentaire.createdAt|date('d-m-Y H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('comment', {'id': commentaire.id}) }}">show</a>
-                    <a href="{{ path('commentaires_edit', {'id': commentaire.id}) }}">edit</a>
-                    <form method="post" action="{{ path('commentaires_delete', {'id': commentaire.id}) }}" onsubmit="return confirm('Confirmer la suppression ?');">
-                        <input type="hidden" name="_method" value="DELETE">
-                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ commentaire.id) }}">
-                        <button class="btn">Supprimer</button>
-                    </form>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="5">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    </div> -->
-
-    <script>
-        function searchBar() {
-        var input, filter, table, tr, td, i, txtValue;
-        input = document.getElementById("myInput");
-        filter = input.value.toUpperCase();
-        table = document.getElementById("myTable");
-        tr = table.getElementsByTagName("tr");
-        for (i = 0; i < tr.length; i++) {
-            td = tr[i].getElementsByTagName("td")[1];
-            if (td) {
-            txtValue = td.textContent || td.innerText;
-            if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                tr[i].style.display = "";
-            } else {
-                tr[i].style.display = "none";
-            }
-            }       
-        }
-        }
-    </script>
 
 {% endblock %}

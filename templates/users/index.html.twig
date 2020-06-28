@@ -1,0 +1,22 @@
+{% extends 'basefront.html.twig' %}
+
+{% block title %} Profile de {{ app.user.pseudo }} {% endblock %}
+
+
+{% block body %}
+    <h1 class="h1 text-center">Profile de {{ app.user.pseudo }}</h1>
+
+	<div class="container">
+		<div class="row">
+			<div class="col">Email</div>
+			<div class="col">Pseudo</div>
+			<div class="w-100"></div>
+			<div class="col">{{ app.user.username }}</div>
+			<div class="col">{{ app.user.pseudo }}</div>
+		</div>
+	</div>
+	<div class="container">
+		<a href="{{ path('users_edit') }}" type="button" class="btn btn-info">Modifier le profile</a>
+		<a href="#" type="button" class="btn btn-info">Modifier le mot de passe</a>
+	</div>
+{% endblock %}

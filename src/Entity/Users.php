@@ -49,7 +49,7 @@ class Users implements UserInterface
     private $note;
 
     /**
-     * @ORM\Column(type="string", length=30, nullable=true)
+     * @ORM\Column(type="string", length=100)
      */
     private $pseudo;
 

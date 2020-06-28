@@ -17,7 +17,7 @@
 			<!-- Header -->
 			<header id="header" class="alt">
 				<h1>
-					<a href="index.php">YouJudge</a>
+					<a href="{{ path('home') }}">YouJudge</a>
 				</h1>
 				<nav id="nav">
 					<ul>
@@ -31,8 +31,12 @@
 							<a href="{{ path('streamers') }}"><i class="fab fa-twitch"></i>  Liste des streamers</a>
 						</li>
 						{% if is_granted('IS_AUTHENTICATED_FULLY') %}
-    						<li><a> Connecté en tant que : {{ app.user.username }}</a></li>
-							<li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
+							<li>
+								<a href="#" class="icon solid fa-angle-down">Bonjour {{ app.user.pseudo }}</a>
+								<ul>
+									<li><a href="{{ path('users_index') }}">Mon profile</a></li>
+									<li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
+								</ul>
 						{% else %}
 						<li>
 							<a href="{{ path('app_register') }}" class="button">S'inscrire</a>

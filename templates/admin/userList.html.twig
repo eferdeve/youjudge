@@ -4,17 +4,16 @@
 
 {% block body %}
 
-<h2 class="text-center">Liste des jeux</h2>
+<h2 class="text-center">Liste des utilisateurs</h2>
 
     <div class="card shadow mb-4">
             <div class="card-header py-3">
-              <h6 class="m-0 font-weight-bold text-primary">Liste complète des jeux</h6>
+              <h6 class="m-0 font-weight-bold text-primary">Liste complète des utilisateurs</h6>
             </div>
-            <input type="text" id="myInput" onkeyup="searchBar()" placeholder="Rechercher un jeu.." title="Type in a name">
 
             <div class="card-body">
               <div class="table-responsive">
-                <table class="table table-bordered" id="myTable" width="100%" cellspacing="0">
+                <table class="table table-bordered dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
                       <th>Id</th>
@@ -57,27 +56,6 @@
               </div>
             </div>
           </div>
-
-          <script>
-            function searchBar() {
-              var input, filter, table, tr, td, i, txtValue;
-              input = document.getElementById("myInput");
-              filter = input.value.toUpperCase();
-              table = document.getElementById("myTable");
-              tr = table.getElementsByTagName("tr");
-              for (i = 0; i < tr.length; i++) {
-                td = tr[i].getElementsByTagName("td")[1];
-                if (td) {
-                  txtValue = td.textContent || td.innerText;
-                  if (txtValue.toUpperCase().indexOf(filter) > -1) {
-                    tr[i].style.display = "";
-                  } else {
-                    tr[i].style.display = "none";
-                  }
-                }       
-              }
-            }
-          </script>
 
 
 
