@@ -7,6 +7,11 @@
     <h1 class="h1 text-center">Profile de {{ app.user.pseudo }}</h1>
 
 	<div class="container">
+	{% for message in app.flashes('message') %}
+		<div class="alert alert-success" role="alert">
+ 			 {{message}}
+		</div>
+	{% endfor %}
 		<div class="row">
 			<div class="col">Email</div>
 			<div class="col">Pseudo</div>
@@ -17,6 +22,6 @@
 	</div>
 	<div class="container">
 		<a href="{{ path('users_edit') }}" type="button" class="btn btn-info">Modifier le profile</a>
-		<a href="#" type="button" class="btn btn-info">Modifier le mot de passe</a>
+		<a href="{{ path('userspass_edit') }}" type="button" class="btn btn-info">Modifier le mot de passe</a>
 	</div>
 {% endblock %}
