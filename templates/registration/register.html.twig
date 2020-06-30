@@ -1,16 +1,20 @@
 {% extends 'basefront.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}Register
+{% endblock %}
 
 {% block body %}
-    <h2 class="text-center">Inscription</h2>
+	<h2 class="text-center">Inscription</h2>
 
-    {{ form_start(registrationForm) }}
-        {{ form_row(registrationForm.email) }}
-        {{ form_row(registrationForm.pseudo) }}
-        {{ form_row(registrationForm.plainPassword) }}
-        {{ form_row(registrationForm.agreeTerms) }}
+	{{ form_start(registrationForm) }}
+	{{ form_row(registrationForm.email) }}
+	{{ form_row(registrationForm.pseudo) }}
+	{{ form_row(registrationForm.plainPassword) }}
+	<div class="custom-control custom-checkbox">
+		<input type="checkbox" class="custom-control-input" id="customCheck1" required="required">
+		<label class="custom-control-label" for="customCheck1">Accepter les CGU</label>
+	</div>
 
-        <button type="submit" class="btn-success">Register</button>
-    {{ form_end(registrationForm) }}
+	<button type="submit" class="btn-success">Register</button>
+	{{ form_end(registrationForm) }}
 {% endblock %}

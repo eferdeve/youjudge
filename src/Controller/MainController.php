@@ -82,6 +82,7 @@ class MainController extends AbstractController
             $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
             $commentaire = $form->getData();
             $commentaire->setCreatedAt(new \DateTime("NOW"));
+            $commentaire->setAuteur($this->get('security.token_storage')->getToken()->getUser());
             $jeux->addCommentaire($commentaire);
     
             $em->persist($commentaire);
@@ -89,6 +90,7 @@ class MainController extends AbstractController
     
             return $this->redirectToRoute($request->getUri());
         }
+
     
         return $this->render('main/fiche.html.twig', [
             'moyenne' => $moyenne,
