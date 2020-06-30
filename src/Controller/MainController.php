@@ -125,4 +125,12 @@ class MainController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    /**
+     * @Route("/conditions_generales_d'utilisation", name="cgu")
+     */
+    public function cgu()
+    {
+        return $this->render('main/cgu.html.twig');
+    }
 }

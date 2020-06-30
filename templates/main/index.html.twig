@@ -36,6 +36,9 @@
 								<ul>
 									<li><a href="{{ path('users_index') }}">Mon profile</a></li>
 									<li><a href="{{ path('app_logout') }}">Se déconnecter</a></li>
+									{% if is_granted('ROLE_ADMIN') %}
+									<li><a href="{{ path('jeux_dashboard') }}">Espace administrateur</a></li>
+									{% endif %}
 								</ul>
 						{% else %}
 						<li>
@@ -158,13 +161,13 @@
 					<a href="{{ path('home') }}">Home</a>
 				</li>
 				<li>
-					<a href="{{ path('jeux_dashboard') }}">Espace administrateur</a>
-				</li>
-				<li>
 					<a href="{{ path('liste') }}">Liste complète des jeux</a>
 				</li>
 				<li>
 					<a href="{{ path('streamers') }}">Liste des streamers</a>
+				</li>
+				<li>
+					<a href="{{ path('cgu') }}">Conditions Générales</a>
 				</li>
 			</ul>
 		</nav>
