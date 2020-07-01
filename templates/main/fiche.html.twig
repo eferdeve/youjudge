@@ -44,12 +44,13 @@
 
     <div class="container">
     <h3 class="text-center">Avis des autres joueurs</h3>
-    {{dump(commentaires)}}
+
+  
         
         {% for commentaire in commentaires %}
         <div class="bubble">
-            <h3>Auteur</h3>
-            <p>{{ commentaire.contenu }}</p>
+            <h3>{{commentaire.pseudo}}</h3>
+            <p><i class="fas fa-quote-left"></i>  {{ commentaire.contenu }}  <i class="fas fa-quote-right"></i></p>
         </div>
         {% endfor %}
         

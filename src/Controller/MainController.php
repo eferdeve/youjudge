@@ -67,12 +67,19 @@ class MainController extends AbstractController
     /**
      * @Route("/fiche/{id}", name="fiche", methods={"POST", "GET"})
      */
-    public function fiche(Request $request, Jeux $jeux, EntityManagerInterface $em, NotesRepository $n): Response
+    public function fiche(Request $request, Jeux $jeux, EntityManagerInterface $em, NotesRepository $n, CommentairesRepository $c): Response
     {
         
         $form = $this->createForm(CommentairesType::class);
         $form->handleRequest($request);
         $moyenne = $n->targetAvg($jeux->getId());
+        $commentaires = $jeux->getCommentaires();
+
+        $commentaire = [];
+        foreach($commentaires as $commentaire) {
+             $commentaire->pseudo=$c->authorComment($commentaire->getId())['pseudo'];
+        }
+
     
         if ($moyenne == null) {
             $moyenne['moyenne'] = "Ce jeu ne dispose pas de note";

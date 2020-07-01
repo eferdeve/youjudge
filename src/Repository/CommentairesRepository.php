@@ -19,6 +19,19 @@ class CommentairesRepository extends ServiceEntityRepository
         parent::__construct($registry, Commentaires::class);
     }
 
+    public function authorComment($commentid)
+    {
+        $db = $this->getEntityManager()->getConnection();
+
+        $req = "SELECT contenu, created_at, users.pseudo as pseudo FROM commentaires LEFT JOIN users ON commentaires.auteur_id = users.id WHERE commentaires.id = '$commentid'";
+        $result = $db->prepare($req);
+
+        $result->execute();
+
+        return $result->fetch();
+    }
+
+    
     // /**
     //  * @return Commentaires[] Returns an array of Commentaires objects
     //  */
