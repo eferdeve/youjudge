@@ -1,5 +1,6 @@
 {{ form_start(form) }}
    
-    {{ form_row(form.note,{"attr":{'min':0,'max':10}}) }}
-    <button class="btn-success">{{ button_label|default('Envoyer') }}</button>
+        {{ form_label(form.note, 'Selectionnez votre note') }}
+        {{ form_widget(form.note, {'attr':{'class':'form-control', 'min':0, 'max':10}}) }}
+        {{ form_errors(form.note) }}    <button class="btn-success">{{ button_label|default('Envoyer') }}</button>
 {{ form_end(form) }}

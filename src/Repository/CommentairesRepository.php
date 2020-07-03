@@ -31,6 +31,18 @@ class CommentairesRepository extends ServiceEntityRepository
         return $result->fetch();
     }
 
+    public function hascommented($id)
+    {
+        $db = $this->getEntityManager()->getConnection();
+
+        $req = "SELECT COUNT(*) AS comments FROM commentaires WHERE auteur_id = '$id'";
+        $result = $db->prepare($req);
+
+        $result->execute();
+
+        return $result->fetch();
+    }
+
     
     // /**
     //  * @return Commentaires[] Returns an array of Commentaires objects

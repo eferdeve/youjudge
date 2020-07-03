@@ -14,7 +14,6 @@ class JeuxType extends AbstractType
         $builder
             ->add('nom')
             ->add('date')
-            ->add('categorie')
             ->add('synopsis')
             ->add('streamer')
         ;

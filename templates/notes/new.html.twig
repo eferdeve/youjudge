@@ -4,7 +4,7 @@
 
 {% block body %}
 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-    <p>Connecté en tant que :</br> <strong>{{ app.user.username }}</strong></p>
+    <p>Connecté en tant que :</br> <strong>{{ app.user.pseudo }}</strong></p>
 {% endif %}
     <h1 class="text-center">Noter ce jeu de 0 à 10</h1>
     <h2 class="text-center">{{ jeux.nom }}</h2>

@@ -11,6 +11,7 @@ use App\Form\CommentairesType;
 use App\Repository\CommentairesRepository;
 use Symfony\Component\HttpFoundation\Request;
 use App\Entity\Jeux;
+use App\Entity\Users;
 use App\Repository\JeuxRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
@@ -48,7 +49,7 @@ class MainController extends AbstractController
         $jeux = $this->getDoctrine()->getRepository(Jeux::class)->findAll();
         $moyenne = $n->avgNote();
         $total = $n->noteCount();
-        //$totalQuery = $n->noteCountQuery(); 
+        //$totalQuery = $n->noteCountQuery(); //Fonction qui donnerait le nombre de note par jeu. (optionnel)
         
         if ($moyenne) {
             foreach ($moyenne as $moy) {
@@ -57,7 +58,7 @@ class MainController extends AbstractController
         }
 
         return $this->render('main/liste.html.twig', [
-            //'totalQuery' => $totalQuery,
+            //'totalQuery' => $totalQuery, //Fonction qui donnerait le nombre de note par jeu. (optionnel)
             'total' => $total,
             'moyenne' => $mm,
             'jeux' => $jeux,
@@ -67,13 +68,14 @@ class MainController extends AbstractController
     /**
      * @Route("/fiche/{id}", name="fiche", methods={"POST", "GET"})
      */
-    public function fiche(Request $request, Jeux $jeux, EntityManagerInterface $em, NotesRepository $n, CommentairesRepository $c): Response
+    public function fiche(Request $request, Jeux $jeux, EntityManagerInterface $em, NotesRepository $n, CommentairesRepository $c, Users $user): Response
     {
         
         $form = $this->createForm(CommentairesType::class);
         $form->handleRequest($request);
         $moyenne = $n->targetAvg($jeux->getId());
         $commentaires = $jeux->getCommentaires();
+        $userId = $user->getId();
 
         $commentaire = [];
         foreach($commentaires as $commentaire) {
@@ -94,8 +96,13 @@ class MainController extends AbstractController
     
             $em->persist($commentaire);
             $em->flush();
+            $this->addflash('message', 'Commentaire posté avec succès ! Merci pour ta participation :)');
+
     
-            return $this->redirectToRoute($request->getUri());
+            return $this->redirectToRoute('liste');
+        } else {
+            $this->addflash('erreur', 'Vous devez vous connecter pour faire cela !');
+
         }
 
     
@@ -124,6 +131,8 @@ class MainController extends AbstractController
             $var->setJeu($jeux);
             $entityManager->persist($note);
             $entityManager->flush();
+            $this->addflash('message', 'La note à été traités et fait est maintenant comptabilisé dans la moyenne officiel du jeu ! Merci pour ta participation :)');
+
 
             return $this->redirectToRoute('liste');
         }

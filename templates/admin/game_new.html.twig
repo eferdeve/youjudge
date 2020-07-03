@@ -7,5 +7,7 @@
 
     {{ include('jeux/_form.html.twig') }}
 
-    <a href="{{ path('jeux_index') }}">back to list</a>
+    <div class="container">
+        <a href="{{ path('jeux_index') }}" class="badge badge-primary">Liste des jeux</a>
+    </div>
 {% endblock %}
