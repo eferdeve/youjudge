@@ -36,11 +36,6 @@ class Jeux
     private $notemoyenne;
 
     /**
-     * @ORM\ManyToOne(targetEntity=Categories::class, inversedBy="catjeux")
-     */
-    private $categorie;
-
-    /**
      * @ORM\OneToMany(targetEntity=Commentaires::class, mappedBy="jeu", orphanRemoval=true)
      */
     private $commentaires;
@@ -103,18 +98,6 @@ class Jeux
     public function setNotemoyenne(string $notemoyenne): self
     {
         $this->notemoyenne = $notemoyenne;
-
-        return $this;
-    }
-
-    public function getCategorie(): ?categories
-    {
-        return $this->categorie;
-    }
-
-    public function setCategorie(?categories $categorie): self
-    {
-        $this->categorie = $categorie;
 
         return $this;
     }

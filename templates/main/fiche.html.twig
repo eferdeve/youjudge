@@ -3,6 +3,11 @@
 {% block title %}Fiche {{ jeux.nom }}{% endblock %}
 
 {% block body %}
+	{% for message in app.flashes('erreur1') %}
+		<div class="alert alert-danger" role="alert">
+ 			 {{message}}
+		</div>
+	{% endfor %}
 
     <table class="table">
         <tbody>

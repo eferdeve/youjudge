@@ -68,38 +68,42 @@ class MainController extends AbstractController
     /**
      * @Route("/fiche/{id}", name="fiche", methods={"POST", "GET"})
      */
-    public function fiche(Request $request, Jeux $jeux, EntityManagerInterface $em, NotesRepository $n, CommentairesRepository $c, Users $user): Response
+    public function fiche(Request $request, Jeux $jeux, EntityManagerInterface $em, NotesRepository $n, CommentairesRepository $c): Response
     {
         
         $form = $this->createForm(CommentairesType::class);
         $form->handleRequest($request);
         $moyenne = $n->targetAvg($jeux->getId());
         $commentaires = $jeux->getCommentaires();
-        $userId = $user->getId();
-
+        
         $commentaire = [];
         foreach($commentaires as $commentaire) {
              $commentaire->pseudo=$c->authorComment($commentaire->getId())['pseudo'];
         }
 
-    
         if ($moyenne == null) {
             $moyenne['moyenne'] = "Ce jeu ne dispose pas de note";
         } 
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-            $commentaire = $form->getData();
-            $commentaire->setCreatedAt(new \DateTime("NOW"));
-            $commentaire->setAuteur($this->get('security.token_storage')->getToken()->getUser());
-            $jeux->addCommentaire($commentaire);
-    
-            $em->persist($commentaire);
-            $em->flush();
-            $this->addflash('message', 'Commentaire posté avec succès ! Merci pour ta participation :)');
+            $limited = $c->hasCommented($this->get('security.token_storage')->getToken()->getUser()->getId(), $jeux->getId());
+            
+            if ($limited) {
+                $this->addflash('erreur1', 'Vous avez déjà commenté ce jeu !');
+            }else{
+                $commentaire = $form->getData();
+                $commentaire->setCreatedAt(new \DateTime("NOW"));
+                $commentaire->setAuteur($this->get('security.token_storage')->getToken()->getUser());
+                $jeux->addCommentaire($commentaire);
+                
+                $em->persist($commentaire);
+                $em->flush();
+                $this->addflash('message', 'Commentaire posté avec succès ! Merci pour ta participation :)');
 
-    
-            return $this->redirectToRoute('liste');
+        
+                return $this->redirectToRoute('liste');
+            }
         } else {
             $this->addflash('erreur', 'Vous devez vous connecter pour faire cela !');
 

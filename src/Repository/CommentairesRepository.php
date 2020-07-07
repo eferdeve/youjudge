@@ -31,17 +31,19 @@ class CommentairesRepository extends ServiceEntityRepository
         return $result->fetch();
     }
 
-    public function hascommented($id)
+    
+    public function hasCommented($userId, $gameId)
     {
         $db = $this->getEntityManager()->getConnection();
 
-        $req = "SELECT COUNT(*) AS comments FROM commentaires WHERE auteur_id = '$id'";
+        $req = "SELECT * FROM commentaires WHERE auteur_id = $userId AND jeu_id = $gameId";
         $result = $db->prepare($req);
 
         $result->execute();
 
         return $result->fetch();
     }
+    
 
     
     // /**
