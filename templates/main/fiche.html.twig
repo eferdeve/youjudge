@@ -9,6 +9,8 @@
 		</div>
 	{% endfor %}
 
+    <a href="{{ path('liste') }}" class="btn btn-link"><i class="fas fa-arrow-right"></i>  Retour à la liste des jeux </a>
+
     <table class="table">
         <tbody>
             <tr>
@@ -43,7 +45,7 @@
     
 
     <div class="container">
-        <h3 class="text-center">Laissez un commentaire (Inscris uniquement)</h3>
+        <h3 class="text-center">Laissez votre avis le plus constructif (Membres uniquement)</h3>
         {{ include('commentaires/_form.html.twig') }}
     </div>
 

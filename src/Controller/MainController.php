@@ -70,7 +70,6 @@ class MainController extends AbstractController
      */
     public function fiche(Request $request, Jeux $jeux, EntityManagerInterface $em, NotesRepository $n, CommentairesRepository $c): Response
     {
-        
         $form = $this->createForm(CommentairesType::class);
         $form->handleRequest($request);
         $moyenne = $n->targetAvg($jeux->getId());
@@ -121,7 +120,7 @@ class MainController extends AbstractController
     /**
      * @Route("/note/{id}", name="notes_new", methods={"GET","POST"})
      */
-    public function new(Request $request, Jeux $jeux): Response
+    public function new(Request $request, Jeux $jeux, NotesRepository $n): Response
     {
         $note = new Notes();
         $form = $this->createForm(NotesType::class, $note);
@@ -130,16 +129,21 @@ class MainController extends AbstractController
 
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $limited = $n->hasVoted($this->get('security.token_storage')->getToken()->getUser()->getId(), $jeux->getId());
+            if ($limited) {
+                $this->addflash('erreur2', 'Vous avez déjà noté ce jeu !');
+            }else{
             $entityManager = $this->getDoctrine()->getManager();
             $var = $form->getData();
             $var->setJeu($jeux);
+            $var->setUser($this->get('security.token_storage')->getToken()->getUser());
             $entityManager->persist($note);
             $entityManager->flush();
             $this->addflash('message', 'La note à été traités et fait est maintenant comptabilisé dans la moyenne officiel du jeu ! Merci pour ta participation :)');
 
 
             return $this->redirectToRoute('liste');
-        }
+        }}
 
         return $this->render('notes/new.html.twig', [
             'jeux' => $jeux,

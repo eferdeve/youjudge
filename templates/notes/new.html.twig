@@ -3,6 +3,11 @@
 {% block title %}Note jeu ({{ jeux.nom }}){% endblock %}
 
 {% block body %}
+	{% for message in app.flashes('erreur2') %}
+		<div class="alert alert-danger" role="alert">
+ 			 {{message}}
+		</div>
+	{% endfor %}
 {% if is_granted('IS_AUTHENTICATED_FULLY') %}
     <p>Connecté en tant que :</br> <strong>{{ app.user.pseudo }}</strong></p>
 {% endif %}

@@ -55,6 +55,18 @@ class NotesRepository extends ServiceEntityRepository
         return $result->fetch();
     }
 
+    public function hasVoted($userId, $gameId)
+    {
+        $db = $this->getEntityManager()->getConnection();
+
+        $req = "SELECT * FROM notes WHERE user_id = $userId AND jeu_id = $gameId";
+        $result = $db->prepare($req);
+
+        $result->execute();
+
+        return $result->fetch();
+    }
+
     //Nombre total de note par jeu, à rajouter si le site prend de l'ampleur..
     
     /*public function noteCountQuery()
