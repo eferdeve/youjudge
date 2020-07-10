@@ -49,6 +49,7 @@ class MainController extends AbstractController
         $jeux = $this->getDoctrine()->getRepository(Jeux::class)->findAll();
         $moyenne = $n->avgNote();
         $total = $n->noteCount();
+        $mm = [];
         //$totalQuery = $n->noteCountQuery(); //Fonction qui donnerait le nombre de note par jeu. (optionnel)
         
         if ($moyenne) {

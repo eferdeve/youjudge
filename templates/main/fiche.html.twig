@@ -27,7 +27,7 @@
             </tr>
             <tr>
                 <th>Note moyenne attribuée par les joueurs</th>
-                <th><h3><span class="badge badge-secondary">{{ moyenne.moyenne }} </span></h3></th>
+                <th><h3><span class="badge badge-secondary">{{ moyenne.moyenne|number_format(1, '.', ',') }} / 10 </span></h3></th>
             </tr>
         </tbody>
     </table>
@@ -37,7 +37,7 @@
 
         
     <div class="container text-center">
-        <a href="{{ path('notes_new', {'id': jeux.id}) }}" class="myButtonNote"><i class="fas fa-arrow-right"></i>  Noter ce jeu (Inscris uniquement)</a>
+        <a href="{{ path('notes_new', {'id': jeux.id}) }}" class="myButtonNote"><i class="fas fa-arrow-right"></i>  Noter ce jeu (Inscris)</a>
     </div>
 
 
@@ -45,7 +45,7 @@
     
 
     <div class="container">
-        <h3 class="text-center">Laissez votre avis le plus constructif (Membres uniquement)</h3>
+        <h3 class="text-center">Laissez votre avis le plus constructif (Inscris)</h3>
         {{ include('commentaires/_form.html.twig') }}
     </div>
 
