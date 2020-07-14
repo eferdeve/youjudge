@@ -75,6 +75,7 @@ class MainController extends AbstractController
         $form->handleRequest($request);
         $moyenne = $n->targetAvg($jeux->getId());
         $commentaires = $jeux->getCommentaires();
+
         
         $commentaire = [];
         foreach($commentaires as $commentaire) {
