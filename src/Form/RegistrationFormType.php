@@ -56,8 +56,8 @@ class RegistrationFormType extends AbstractType
             'data_class' => Users::class,
             'constraints' => [
                 new UniqueEntity([
-                    'fields' => ['pseudo', 'email'],
-                    'message' => ['email' => 'Pseudo existe déjà' ]
+                    'fields' => 'pseudo',
+                    'message' => 'Pseudo existe déjà' 
                 ])
             ]
         ]);
